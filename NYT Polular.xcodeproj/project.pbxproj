@@ -1,0 +1,466 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 48;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		484870F0205D159C00645DB5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 484870EF205D159C00645DB5 /* AppDelegate.swift */; };
+		484870F2205D159C00645DB5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 484870F1205D159C00645DB5 /* ViewController.swift */; };
+		484870F5205D159C00645DB5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 484870F3205D159C00645DB5 /* Main.storyboard */; };
+		484870F8205D159C00645DB5 /* NYT_Polular.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 484870F6205D159C00645DB5 /* NYT_Polular.xcdatamodeld */; };
+		484870FA205D159C00645DB5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 484870F9205D159C00645DB5 /* Assets.xcassets */; };
+		484870FD205D159C00645DB5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 484870FB205D159C00645DB5 /* LaunchScreen.storyboard */; };
+		48487108205D159C00645DB5 /* NYT_PolularTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48487107205D159C00645DB5 /* NYT_PolularTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		48487104205D159C00645DB5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 484870E4205D159C00645DB5 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 484870EB205D159C00645DB5;
+			remoteInfo = "NYT Polular";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		484870EC205D159C00645DB5 /* NYT Polular.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "NYT Polular.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		484870EF205D159C00645DB5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		484870F1205D159C00645DB5 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		484870F4205D159C00645DB5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		484870F7205D159C00645DB5 /* NYT_Polular.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = NYT_Polular.xcdatamodel; sourceTree = "<group>"; };
+		484870F9205D159C00645DB5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		484870FC205D159C00645DB5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		484870FE205D159C00645DB5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		48487103205D159C00645DB5 /* NYT PolularTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "NYT PolularTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		48487107205D159C00645DB5 /* NYT_PolularTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NYT_PolularTests.swift; sourceTree = "<group>"; };
+		48487109205D159C00645DB5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		484870E9205D159C00645DB5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		48487100205D159C00645DB5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		484870E3205D159C00645DB5 = {
+			isa = PBXGroup;
+			children = (
+				484870EE205D159C00645DB5 /* NYT Polular */,
+				48487106205D159C00645DB5 /* NYT PolularTests */,
+				484870ED205D159C00645DB5 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		484870ED205D159C00645DB5 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				484870EC205D159C00645DB5 /* NYT Polular.app */,
+				48487103205D159C00645DB5 /* NYT PolularTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		484870EE205D159C00645DB5 /* NYT Polular */ = {
+			isa = PBXGroup;
+			children = (
+				484870EF205D159C00645DB5 /* AppDelegate.swift */,
+				484870F1205D159C00645DB5 /* ViewController.swift */,
+				484870F3205D159C00645DB5 /* Main.storyboard */,
+				484870F9205D159C00645DB5 /* Assets.xcassets */,
+				484870FB205D159C00645DB5 /* LaunchScreen.storyboard */,
+				484870FE205D159C00645DB5 /* Info.plist */,
+				484870F6205D159C00645DB5 /* NYT_Polular.xcdatamodeld */,
+			);
+			path = "NYT Polular";
+			sourceTree = "<group>";
+		};
+		48487106205D159C00645DB5 /* NYT PolularTests */ = {
+			isa = PBXGroup;
+			children = (
+				48487107205D159C00645DB5 /* NYT_PolularTests.swift */,
+				48487109205D159C00645DB5 /* Info.plist */,
+			);
+			path = "NYT PolularTests";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		484870EB205D159C00645DB5 /* NYT Polular */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4848710C205D159C00645DB5 /* Build configuration list for PBXNativeTarget "NYT Polular" */;
+			buildPhases = (
+				484870E8205D159C00645DB5 /* Sources */,
+				484870E9205D159C00645DB5 /* Frameworks */,
+				484870EA205D159C00645DB5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "NYT Polular";
+			productName = "NYT Polular";
+			productReference = 484870EC205D159C00645DB5 /* NYT Polular.app */;
+			productType = "com.apple.product-type.application";
+		};
+		48487102205D159C00645DB5 /* NYT PolularTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4848710F205D159C00645DB5 /* Build configuration list for PBXNativeTarget "NYT PolularTests" */;
+			buildPhases = (
+				484870FF205D159C00645DB5 /* Sources */,
+				48487100205D159C00645DB5 /* Frameworks */,
+				48487101205D159C00645DB5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				48487105205D159C00645DB5 /* PBXTargetDependency */,
+			);
+			name = "NYT PolularTests";
+			productName = "NYT PolularTests";
+			productReference = 48487103205D159C00645DB5 /* NYT PolularTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		484870E4205D159C00645DB5 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0920;
+				LastUpgradeCheck = 0920;
+				ORGANIZATIONNAME = Cornelis;
+				TargetAttributes = {
+					484870EB205D159C00645DB5 = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+					};
+					48487102205D159C00645DB5 = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 484870EB205D159C00645DB5;
+					};
+				};
+			};
+			buildConfigurationList = 484870E7205D159C00645DB5 /* Build configuration list for PBXProject "NYT Polular" */;
+			compatibilityVersion = "Xcode 8.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 484870E3205D159C00645DB5;
+			productRefGroup = 484870ED205D159C00645DB5 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				484870EB205D159C00645DB5 /* NYT Polular */,
+				48487102205D159C00645DB5 /* NYT PolularTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		484870EA205D159C00645DB5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				484870FD205D159C00645DB5 /* LaunchScreen.storyboard in Resources */,
+				484870FA205D159C00645DB5 /* Assets.xcassets in Resources */,
+				484870F5205D159C00645DB5 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		48487101205D159C00645DB5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		484870E8205D159C00645DB5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				484870F2205D159C00645DB5 /* ViewController.swift in Sources */,
+				484870F8205D159C00645DB5 /* NYT_Polular.xcdatamodeld in Sources */,
+				484870F0205D159C00645DB5 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		484870FF205D159C00645DB5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				48487108205D159C00645DB5 /* NYT_PolularTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		48487105205D159C00645DB5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 484870EB205D159C00645DB5 /* NYT Polular */;
+			targetProxy = 48487104205D159C00645DB5 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		484870F3205D159C00645DB5 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				484870F4205D159C00645DB5 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		484870FB205D159C00645DB5 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				484870FC205D159C00645DB5 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		4848710A205D159C00645DB5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		4848710B205D159C00645DB5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		4848710D205D159C00645DB5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = K68747FJ6J;
+				INFOPLIST_FILE = "NYT Polular/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "CVDB.NYT-Polular";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		4848710E205D159C00645DB5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = K68747FJ6J;
+				INFOPLIST_FILE = "NYT Polular/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "CVDB.NYT-Polular";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		48487110205D159C00645DB5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = K68747FJ6J;
+				INFOPLIST_FILE = "NYT PolularTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "CVDB.NYT-PolularTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NYT Polular.app/NYT Polular";
+			};
+			name = Debug;
+		};
+		48487111205D159C00645DB5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = K68747FJ6J;
+				INFOPLIST_FILE = "NYT PolularTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "CVDB.NYT-PolularTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NYT Polular.app/NYT Polular";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		484870E7205D159C00645DB5 /* Build configuration list for PBXProject "NYT Polular" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4848710A205D159C00645DB5 /* Debug */,
+				4848710B205D159C00645DB5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4848710C205D159C00645DB5 /* Build configuration list for PBXNativeTarget "NYT Polular" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4848710D205D159C00645DB5 /* Debug */,
+				4848710E205D159C00645DB5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4848710F205D159C00645DB5 /* Build configuration list for PBXNativeTarget "NYT PolularTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				48487110205D159C00645DB5 /* Debug */,
+				48487111205D159C00645DB5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		484870F6205D159C00645DB5 /* NYT_Polular.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				484870F7205D159C00645DB5 /* NYT_Polular.xcdatamodel */,
+			);
+			currentVersion = 484870F7205D159C00645DB5 /* NYT_Polular.xcdatamodel */;
+			path = NYT_Polular.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 484870E4205D159C00645DB5 /* Project object */;
+}
