@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		481E342B205DB5C7005CC92F /* String+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 481E342A205DB5C7005CC92F /* String+Utility.swift */; };
 		484870F0205D159C00645DB5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 484870EF205D159C00645DB5 /* AppDelegate.swift */; };
 		484870F2205D159C00645DB5 /* ArticleListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 484870F1205D159C00645DB5 /* ArticleListViewController.swift */; };
 		484870F8205D159C00645DB5 /* NYT_Polular.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 484870F6205D159C00645DB5 /* NYT_Polular.xcdatamodeld */; };
@@ -36,6 +37,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		481E342A205DB5C7005CC92F /* String+Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Utility.swift"; sourceTree = "<group>"; };
 		484870EC205D159C00645DB5 /* NYT Polular.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "NYT Polular.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		484870EF205D159C00645DB5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		484870F1205D159C00645DB5 /* ArticleListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleListViewController.swift; sourceTree = "<group>"; };
@@ -121,6 +123,7 @@
 			isa = PBXGroup;
 			children = (
 				48487112205D537A00645DB5 /* Binder.swift */,
+				481E342A205DB5C7005CC92F /* String+Utility.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -263,6 +266,7 @@
 				48487113205D537A00645DB5 /* Binder.swift in Sources */,
 				484870F8205D159C00645DB5 /* NYT_Polular.xcdatamodeld in Sources */,
 				484870F0205D159C00645DB5 /* AppDelegate.swift in Sources */,
+				481E342B205DB5C7005CC92F /* String+Utility.swift in Sources */,
 				4848712A205D716E00645DB5 /* ArticleListCellViewModel.swift in Sources */,
 				48487128205D714200645DB5 /* ArticleListViewModel.swift in Sources */,
 			);

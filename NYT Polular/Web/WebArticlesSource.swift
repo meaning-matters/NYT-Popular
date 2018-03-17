@@ -115,10 +115,17 @@ class WebArticlesSource: ArticlesSourceProtocol
                 return
             }
 
+            guard let patchedData = self.patchData(data) else
+            {
+                completion(nil, "Invalid data received")
+
+                return
+            }
+
             var object: AnyObject
             do
             {
-                object = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as AnyObject
+                object = try JSONSerialization.jsonObject(with: patchedData, options: []) as AnyObject
             }
             catch let error
             {
@@ -154,6 +161,21 @@ class WebArticlesSource: ArticlesSourceProtocol
                 completion(nil, "Error getting data from NYT")
             }
         }
+    }
+
+    /// Patches JSON to work around format design issue.
+    ///
+    /// There's a design issue with NYT's JSON format: When there are no images, the "media" is not an empty array as
+    /// you'd expect, but an empty string instead.  This means that the data type of "media"'s value changes.  To
+    /// allow the use of Swift 4's Decodable classes for easy JSON parsing, this issue is patched here.
+    private func patchData(_ data: Data) -> Data?
+    {
+        var string = String(data: data, encoding: .utf8)
+
+        // Replace occurences of empty "media" as string, with an empty array.
+        string?.replaceMatches(of: "\"media\":\"\"", with: "[]")
+
+        return string?.data(using: .utf8)
     }
 
     /// Gets optional image URL of 150x150.
