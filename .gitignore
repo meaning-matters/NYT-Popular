@@ -1,0 +1,33 @@
+# OS X noise
+*.ipa
+*.swp
+*~.nib
+
+# System and Xcode stuff
+.svn
+.DS_Store
+profile
+xcuserdata
+build/*
+*~.nib
+*.swp
+*.mode1
+*.mode1v3
+*.mode2v3
+*.perspective
+*.perspectivev3
+*.pbxuser
+*.xcworkspace
+*.xcbkptlist
+xcuserdata
+build
+*.pbxuser
+!default.pbxuser
+*.mode?v3
+!default.mode?v3
+*.perspective
+*.perspectivev3
+!default.perspectivev3
+!default.xcworkspace
+*.moved-aside
+

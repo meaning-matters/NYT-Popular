@@ -8,12 +8,21 @@
 
 /* Begin PBXBuildFile section */
 		484870F0205D159C00645DB5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 484870EF205D159C00645DB5 /* AppDelegate.swift */; };
-		484870F2205D159C00645DB5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 484870F1205D159C00645DB5 /* ViewController.swift */; };
-		484870F5205D159C00645DB5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 484870F3205D159C00645DB5 /* Main.storyboard */; };
+		484870F2205D159C00645DB5 /* ArticleListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 484870F1205D159C00645DB5 /* ArticleListViewController.swift */; };
 		484870F8205D159C00645DB5 /* NYT_Polular.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 484870F6205D159C00645DB5 /* NYT_Polular.xcdatamodeld */; };
 		484870FA205D159C00645DB5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 484870F9205D159C00645DB5 /* Assets.xcassets */; };
 		484870FD205D159C00645DB5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 484870FB205D159C00645DB5 /* LaunchScreen.storyboard */; };
 		48487108205D159C00645DB5 /* NYT_PolularTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48487107205D159C00645DB5 /* NYT_PolularTests.swift */; };
+		48487113205D537A00645DB5 /* Binder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48487112205D537A00645DB5 /* Binder.swift */; };
+		48487115205D550B00645DB5 /* ArticleListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 48487114205D550B00645DB5 /* ArticleListViewController.xib */; };
+		48487117205D5BC400645DB5 /* WebInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48487116205D5BC400645DB5 /* WebInterface.swift */; };
+		4848711D205D5CC000645DB5 /* WebImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4848711C205D5CC000645DB5 /* WebImageCache.swift */; };
+		4848711F205D6FA900645DB5 /* WebArticlesSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4848711E205D6FA900645DB5 /* WebArticlesSource.swift */; };
+		48487124205D704D00645DB5 /* ArticleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48487123205D704D00645DB5 /* ArticleModel.swift */; };
+		48487126205D711000645DB5 /* ArticleListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48487125205D711000645DB5 /* ArticleListCell.swift */; };
+		48487128205D714200645DB5 /* ArticleListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48487127205D714200645DB5 /* ArticleListViewModel.swift */; };
+		4848712A205D716E00645DB5 /* ArticleListCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48487129205D716E00645DB5 /* ArticleListCellViewModel.swift */; };
+		4848712C205D96E600645DB5 /* ArticleListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4848712B205D96E600645DB5 /* ArticleListCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,8 +38,7 @@
 /* Begin PBXFileReference section */
 		484870EC205D159C00645DB5 /* NYT Polular.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "NYT Polular.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		484870EF205D159C00645DB5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		484870F1205D159C00645DB5 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		484870F4205D159C00645DB5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		484870F1205D159C00645DB5 /* ArticleListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleListViewController.swift; sourceTree = "<group>"; };
 		484870F7205D159C00645DB5 /* NYT_Polular.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = NYT_Polular.xcdatamodel; sourceTree = "<group>"; };
 		484870F9205D159C00645DB5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		484870FC205D159C00645DB5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -38,6 +46,16 @@
 		48487103205D159C00645DB5 /* NYT PolularTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "NYT PolularTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		48487107205D159C00645DB5 /* NYT_PolularTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NYT_PolularTests.swift; sourceTree = "<group>"; };
 		48487109205D159C00645DB5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		48487112205D537A00645DB5 /* Binder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Binder.swift; path = "NYT Polular/Common/Binder.swift"; sourceTree = SOURCE_ROOT; };
+		48487114205D550B00645DB5 /* ArticleListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ArticleListViewController.xib; sourceTree = "<group>"; };
+		48487116205D5BC400645DB5 /* WebInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebInterface.swift; sourceTree = "<group>"; };
+		4848711C205D5CC000645DB5 /* WebImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebImageCache.swift; sourceTree = "<group>"; };
+		4848711E205D6FA900645DB5 /* WebArticlesSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebArticlesSource.swift; sourceTree = "<group>"; };
+		48487123205D704D00645DB5 /* ArticleModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleModel.swift; sourceTree = "<group>"; };
+		48487125205D711000645DB5 /* ArticleListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleListCell.swift; sourceTree = "<group>"; };
+		48487127205D714200645DB5 /* ArticleListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleListViewModel.swift; sourceTree = "<group>"; };
+		48487129205D716E00645DB5 /* ArticleListCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleListCellViewModel.swift; sourceTree = "<group>"; };
+		4848712B205D96E600645DB5 /* ArticleListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ArticleListCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,12 +97,12 @@
 		484870EE205D159C00645DB5 /* NYT Polular */ = {
 			isa = PBXGroup;
 			children = (
-				484870EF205D159C00645DB5 /* AppDelegate.swift */,
-				484870F1205D159C00645DB5 /* ViewController.swift */,
-				484870F3205D159C00645DB5 /* Main.storyboard */,
-				484870F9205D159C00645DB5 /* Assets.xcassets */,
-				484870FB205D159C00645DB5 /* LaunchScreen.storyboard */,
 				484870FE205D159C00645DB5 /* Info.plist */,
+				484870EF205D159C00645DB5 /* AppDelegate.swift */,
+				484870F9205D159C00645DB5 /* Assets.xcassets */,
+				4848711A205D5C7D00645DB5 /* Common */,
+				4848711B205D5C9A00645DB5 /* Web */,
+				48487120205D6FB100645DB5 /* UI */,
 				484870F6205D159C00645DB5 /* NYT_Polular.xcdatamodeld */,
 			);
 			path = "NYT Polular";
@@ -97,6 +115,39 @@
 				48487109205D159C00645DB5 /* Info.plist */,
 			);
 			path = "NYT PolularTests";
+			sourceTree = "<group>";
+		};
+		4848711A205D5C7D00645DB5 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				48487112205D537A00645DB5 /* Binder.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		4848711B205D5C9A00645DB5 /* Web */ = {
+			isa = PBXGroup;
+			children = (
+				4848711E205D6FA900645DB5 /* WebArticlesSource.swift */,
+				48487116205D5BC400645DB5 /* WebInterface.swift */,
+				4848711C205D5CC000645DB5 /* WebImageCache.swift */,
+			);
+			path = Web;
+			sourceTree = "<group>";
+		};
+		48487120205D6FB100645DB5 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				484870FB205D159C00645DB5 /* LaunchScreen.storyboard */,
+				48487123205D704D00645DB5 /* ArticleModel.swift */,
+				484870F1205D159C00645DB5 /* ArticleListViewController.swift */,
+				48487114205D550B00645DB5 /* ArticleListViewController.xib */,
+				48487125205D711000645DB5 /* ArticleListCell.swift */,
+				48487127205D714200645DB5 /* ArticleListViewModel.swift */,
+				48487129205D716E00645DB5 /* ArticleListCellViewModel.swift */,
+				4848712B205D96E600645DB5 /* ArticleListCell.xib */,
+			);
+			path = UI;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -182,9 +233,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4848712C205D96E600645DB5 /* ArticleListCell.xib in Resources */,
+				48487115205D550B00645DB5 /* ArticleListViewController.xib in Resources */,
 				484870FD205D159C00645DB5 /* LaunchScreen.storyboard in Resources */,
 				484870FA205D159C00645DB5 /* Assets.xcassets in Resources */,
-				484870F5205D159C00645DB5 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -202,9 +254,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				484870F2205D159C00645DB5 /* ViewController.swift in Sources */,
+				48487117205D5BC400645DB5 /* WebInterface.swift in Sources */,
+				4848711F205D6FA900645DB5 /* WebArticlesSource.swift in Sources */,
+				48487124205D704D00645DB5 /* ArticleModel.swift in Sources */,
+				484870F2205D159C00645DB5 /* ArticleListViewController.swift in Sources */,
+				48487126205D711000645DB5 /* ArticleListCell.swift in Sources */,
+				4848711D205D5CC000645DB5 /* WebImageCache.swift in Sources */,
+				48487113205D537A00645DB5 /* Binder.swift in Sources */,
 				484870F8205D159C00645DB5 /* NYT_Polular.xcdatamodeld in Sources */,
 				484870F0205D159C00645DB5 /* AppDelegate.swift in Sources */,
+				4848712A205D716E00645DB5 /* ArticleListCellViewModel.swift in Sources */,
+				48487128205D714200645DB5 /* ArticleListViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -227,14 +287,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		484870F3205D159C00645DB5 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				484870F4205D159C00645DB5 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		484870FB205D159C00645DB5 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -360,6 +412,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = K68747FJ6J;
 				INFOPLIST_FILE = "NYT Polular/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "CVDB.NYT-Polular";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -375,6 +428,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = K68747FJ6J;
 				INFOPLIST_FILE = "NYT Polular/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "CVDB.NYT-Polular";
 				PRODUCT_NAME = "$(TARGET_NAME)";
