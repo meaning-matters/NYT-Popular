@@ -17,7 +17,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool
     {
-        self.articlesViewController = ArticleListViewController(nibName: "ArticleListViewController", bundle: nil)
+        let webInterface  = WebInterface()
+        let webImageCache = WebImageCache(webInterface: webInterface)
+        self.articlesViewController = ArticleListViewController(webInterface: webInterface, webImageCache: webImageCache)
 
         let frame = UIScreen.main.bounds
         window = UIWindow(frame: frame)

@@ -10,7 +10,8 @@ import Foundation
 
 protocol WebInterfaceProtocol
 {
-    func getRequest(toUrlString urlString: String, completion: @escaping(Data?, String?) -> Void)
+    @discardableResult  func getRequest(toUrlString urlString: String,
+                                        completion: @escaping(Data?, String?) -> Void) -> URLSessionDataTask
 }
 
 /// Class to perform web requests.
@@ -21,7 +22,8 @@ class WebInterface: WebInterfaceProtocol
     /// - Parameters:
     ///   - urlString:  The URL that needs to be loaded in string format.
     ///   - completion: Called on the main thread to supply the result object, or an error string.
-    func getRequest(toUrlString urlString: String, completion: @escaping(Data?, String?) -> Void)
+    @discardableResult func getRequest(toUrlString urlString: String,
+                                       completion: @escaping(Data?, String?) -> Void) -> URLSessionDataTask
     {
         let url     = URL(string: urlString)! // TODO: Check `url`; currently assume it's never `nil`.
         var request = URLRequest(url: url)
@@ -29,7 +31,7 @@ class WebInterface: WebInterfaceProtocol
         // TODO: For this demo only, to make sure we always reload fresh data.
         request.cachePolicy = .reloadIgnoringLocalAndRemoteCacheData
 
-        URLSession.shared.dataTask(with: request, completionHandler:
+        let dataTask = URLSession.shared.dataTask(with: request, completionHandler:
         { (data, response, error) in
             DispatchQueue.main.async
             {
@@ -42,6 +44,10 @@ class WebInterface: WebInterfaceProtocol
                     completion(data, nil)
                 }
             }
-        }).resume()
+        })
+
+        dataTask.resume()
+
+        return dataTask
     }
 }

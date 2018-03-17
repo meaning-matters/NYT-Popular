@@ -19,9 +19,16 @@ protocol WebImageCacheProtocol
 /// Local cache of images downloaded from the web.
 class WebImageCache: WebImageCacheProtocol
 {
+    private var webInterface: WebInterfaceProtocol
+
     private var dataTasks   = [String : URLSessionDataTask]()
     private var completions = [String : [(UIImage?) -> ()]]()
     private var images      = [String : UIImage]()
+
+    init(webInterface: WebInterfaceProtocol)
+    {
+        self.webInterface = webInterface
+    }
 
     /// Returns image from local cache if it's been downloaded earlier, otherwise returns the image after it has been
     /// downloaded. The image is downloaded on background thread.
@@ -58,32 +65,22 @@ class WebImageCache: WebImageCacheProtocol
             return
         }
 
-        let url     = URL(string: urlString)! // TODO: Check `url`; currently assume it's never `nil`.
-        var request = URLRequest(url: url)
-
-        request.cachePolicy = .reloadIgnoringLocalAndRemoteCacheData
-
-        self.dataTasks[urlString] = URLSession.shared.dataTask(with: request)
-        { (data, response, error) in
-            DispatchQueue.main.async
+        self.dataTasks[urlString] = self.webInterface.getRequest(toUrlString: urlString, completion:
+        { (data, error) in
+            if let data = data
             {
-                if let data = data
-                {
-                    let image = UIImage(data: data)
-                    self.images[urlString] = image
-                }
-                
-                for completion in self.completions[urlString] ?? []
-                {
-                    completion(self.images[urlString])
-                }
-                
-                self.completions[urlString] = nil
-                self.dataTasks[urlString] = nil
+                let image = UIImage(data: data)
+                self.images[urlString] = image
             }
-        }
 
-        self.dataTasks[urlString]?.resume()
+            for completion in self.completions[urlString] ?? []
+            {
+                completion(self.images[urlString])
+            }
+
+            self.completions[urlString] = nil
+            self.dataTasks[urlString]   = nil
+        })
     }
 
     /// Flushes all images from the cache. Pending downloads are cancelled and the completion handlers are no longer

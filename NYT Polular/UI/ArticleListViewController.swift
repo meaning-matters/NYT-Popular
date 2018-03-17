@@ -12,9 +12,23 @@ class ArticleListViewController: UIViewController, UITableViewDelegate, UITableV
 {
     @IBOutlet private var tableView: UITableView!
 
-    private var statusLabel: UILabel!
-    private var imageCache:  WebImageCacheProtocol = WebImageCache() // TODO: Inject this from outside.
-    private let loadingText: String                = "Loading..."
+    private var webInterface:  WebInterfaceProtocol
+    private var webImageCache: WebImageCacheProtocol
+    private var statusLabel:   UILabel!
+    private let loadingText:   String = "Loading..."
+
+    init(webInterface: WebInterfaceProtocol, webImageCache: WebImageCacheProtocol)
+    {
+        self.webInterface  = webInterface
+        self.webImageCache = webImageCache
+
+        super.init(nibName: "ArticleListViewController", bundle: nil)
+    }
+
+    required init?(coder aDecoder: NSCoder)
+    {
+        fatalError("init(coder:) has not been implemented")
+    }
 
     override func viewDidLoad()
     {
@@ -38,8 +52,8 @@ class ArticleListViewController: UIViewController, UITableViewDelegate, UITableV
 
     private lazy var viewModel: ArticleListViewModel =
     {
-        return ArticleListViewModel(articlesSource: WebArticlesSource(webInterface: WebInterface()),
-                                    imageCache: self.imageCache)
+        return ArticleListViewModel(articlesSource: WebArticlesSource(webInterface: self.webInterface),
+                                    imageCache: self.webImageCache)
     }()
 
     @objc private func handleRefresh(_ refreshControl: UIRefreshControl)
