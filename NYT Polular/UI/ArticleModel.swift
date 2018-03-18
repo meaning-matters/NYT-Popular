@@ -8,7 +8,7 @@
 
 import Foundation
 
-class ArticleModel
+@objcMembers class ArticleModel: NSObject
 {
     var url:          String
     var section:      String

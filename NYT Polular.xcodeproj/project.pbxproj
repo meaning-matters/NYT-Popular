@@ -14,7 +14,6 @@
 		484870FA205D159C00645DB5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 484870F9205D159C00645DB5 /* Assets.xcassets */; };
 		484870FD205D159C00645DB5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 484870FB205D159C00645DB5 /* LaunchScreen.storyboard */; };
 		48487108205D159C00645DB5 /* NYT_PolularTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48487107205D159C00645DB5 /* NYT_PolularTests.swift */; };
-		48487113205D537A00645DB5 /* Binder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48487112205D537A00645DB5 /* Binder.swift */; };
 		48487115205D550B00645DB5 /* ArticleListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 48487114205D550B00645DB5 /* ArticleListViewController.xib */; };
 		48487117205D5BC400645DB5 /* WebInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48487116205D5BC400645DB5 /* WebInterface.swift */; };
 		4848711D205D5CC000645DB5 /* WebImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4848711C205D5CC000645DB5 /* WebImageCache.swift */; };
@@ -48,7 +47,6 @@
 		48487103205D159C00645DB5 /* NYT PolularTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "NYT PolularTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		48487107205D159C00645DB5 /* NYT_PolularTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NYT_PolularTests.swift; sourceTree = "<group>"; };
 		48487109205D159C00645DB5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		48487112205D537A00645DB5 /* Binder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Binder.swift; path = "NYT Polular/Common/Binder.swift"; sourceTree = SOURCE_ROOT; };
 		48487114205D550B00645DB5 /* ArticleListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ArticleListViewController.xib; sourceTree = "<group>"; };
 		48487116205D5BC400645DB5 /* WebInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebInterface.swift; sourceTree = "<group>"; };
 		4848711C205D5CC000645DB5 /* WebImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebImageCache.swift; sourceTree = "<group>"; };
@@ -122,7 +120,6 @@
 		4848711A205D5C7D00645DB5 /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				48487112205D537A00645DB5 /* Binder.swift */,
 				481E342A205DB5C7005CC92F /* String+Utility.swift */,
 			);
 			path = Common;
@@ -263,7 +260,6 @@
 				484870F2205D159C00645DB5 /* ArticleListViewController.swift in Sources */,
 				48487126205D711000645DB5 /* ArticleListCell.swift in Sources */,
 				4848711D205D5CC000645DB5 /* WebImageCache.swift in Sources */,
-				48487113205D537A00645DB5 /* Binder.swift in Sources */,
 				484870F8205D159C00645DB5 /* NYT_Polular.xcdatamodeld in Sources */,
 				484870F0205D159C00645DB5 /* AppDelegate.swift in Sources */,
 				481E342B205DB5C7005CC92F /* String+Utility.swift in Sources */,

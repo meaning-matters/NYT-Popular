@@ -17,7 +17,7 @@ protocol ArticlesSourceProtocol
     ///
     /// - Parameter completion: Called on main thread when the fetch has finished.  Supplies an array of Article
     ///                         objects. On error, `nil` is supplied, together with an error string.
-    func getArticles(completion: @escaping (_ articles: [ArticleModel]?, _ error: String?) -> ())
+    func getArticles(completion: @escaping (_ articles: [ArticleModel]?, _ errorString: String?) -> ())
 }
 
 /// Retrieves articles from the NYT web API.  The returned JSON has the following format (with example data):
@@ -97,13 +97,13 @@ class WebArticlesSource: ArticlesSourceProtocol
         self.webInterface = webInterface
     }
 
-    func getArticles(completion: @escaping (_ articles: [ArticleModel]?, _ error: String?) -> ())
+    func getArticles(completion: @escaping (_ articles: [ArticleModel]?, _ errorString: String?) -> ())
     {
         webInterface.getRequest(toUrlString: urlString)
-        { (data, error) in
-            guard error == nil else
+        { (data, errorString) in
+            guard errorString == nil else
             {
-                completion(nil, error);
+                completion(nil, errorString);
 
                 return
             }

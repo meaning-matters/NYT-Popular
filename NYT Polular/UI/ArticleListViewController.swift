@@ -6,6 +6,7 @@
 //  Copyright © 2018 Cornelis. All rights reserved.
 //
 
+import Foundation
 import UIKit
 
 class ArticleListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource
@@ -16,6 +17,10 @@ class ArticleListViewController: UIViewController, UITableViewDelegate, UITableV
     private var webImageCache: WebImageCacheProtocol
     private var statusLabel:   UILabel!
     private let loadingText:   String = "Loading..."
+
+    private var errorObserver:     NSKeyValueObservation?
+    private var isLoadingObserver: NSKeyValueObservation?
+    private var articlesObserver:  NSKeyValueObservation?
 
     init(webInterface: WebInterfaceProtocol, webImageCache: WebImageCacheProtocol)
     {
@@ -80,14 +85,14 @@ class ArticleListViewController: UIViewController, UITableViewDelegate, UITableV
 
     private func bindViewModel()
     {
-        self.viewModel.error.binding =
-        { [weak self] in
-            self?.statusLabel.text = $0
+        self.errorObserver = self.viewModel.observe(\.errorString)
+        { [weak self] (viewModel, change) in
+            self?.statusLabel.text = viewModel.errorString
         }
 
-        self.viewModel.isLoading.binding =
-        { [weak self] in
-            if $0
+        self.isLoadingObserver = self.viewModel.observe(\.isLoading)
+        { [weak self] (viewModel, change) in
+            if viewModel.isLoading
             {
                 self?.statusLabel.text = self?.loadingText
             }
@@ -95,12 +100,12 @@ class ArticleListViewController: UIViewController, UITableViewDelegate, UITableV
             {
                 self?.tableView.refreshControl?.endRefreshing()
 
-                self?.statusLabel.text = self?.viewModel.error.value
+                self?.statusLabel.text = self?.viewModel.errorString
             }
         }
 
-        self.viewModel.articles.binding =
-        { [weak self] (_) in
+        self.articlesObserver = self.viewModel.observe(\.articles)
+        { [weak self] (viewModel, change) in
             self?.tableView.reloadData()
         }
     }
@@ -109,7 +114,7 @@ class ArticleListViewController: UIViewController, UITableViewDelegate, UITableV
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
-        return self.viewModel.articles.value.count
+        return self.viewModel.articles.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell

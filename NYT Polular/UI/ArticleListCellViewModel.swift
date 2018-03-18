@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class ArticleListCellViewModel
+@objcMembers class ArticleListCellViewModel: NSObject
 {
     let imageCache:    WebImageCacheProtocol
     let section:       String
@@ -17,7 +17,8 @@ class ArticleListCellViewModel
     let title:         String
     let byline:        String
     let thumbnailUrl:  String?
-    var thumbnail:     Binder<UIImage?> = Binder(nil)
+
+    dynamic var thumbnail: UIImage?
 
     init(article: ArticleModel, imageCache: WebImageCacheProtocol)
     {
@@ -29,11 +30,13 @@ class ArticleListCellViewModel
         self.byline       = article.byline
         self.thumbnailUrl = article.thumbnailUrl
 
+        super.init()
+
         if let url = self.thumbnailUrl
         {
             self.imageCache.getImage(at: url)
             { [weak self] (image) in
-                self?.thumbnail.value = image
+                self?.thumbnail = image
             }
         }
     }

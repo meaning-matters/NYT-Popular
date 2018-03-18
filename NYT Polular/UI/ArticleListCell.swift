@@ -16,13 +16,15 @@ class ArticleListCell: UITableViewCell
     @IBOutlet private weak var titleLabel:    UILabel!
     @IBOutlet private weak var bylineLabel:   UILabel!
 
+    private var thumbnailObserver: NSKeyValueObservation?
+
     var viewModel: ArticleListCellViewModel!
     {
         didSet
         {
             self.sectionLabel.text   = self.viewModel.section
             self.dateLabel.text      = self.viewModel.date
-            self.thumbnailView.image = self.viewModel.thumbnail.value ?? UIImage(named: "ListPlaceholder")
+            self.thumbnailView.image = self.viewModel.thumbnail ?? UIImage(named: "ListPlaceholder")
             self.titleLabel.text     = self.viewModel.title
             self.bylineLabel.text    = self.viewModel.byline
 
@@ -32,6 +34,9 @@ class ArticleListCell: UITableViewCell
 
     private func bindViewModel()
     {
-        self.viewModel.thumbnail.binding = { [unowned self] in self.thumbnailView.image = $0 }
+        self.thumbnailObserver = self.viewModel.observe(\.thumbnail)
+        { [weak self] (viewModel, changes) in
+            self?.thumbnailView.image = viewModel.thumbnail
+        }
     }
 }

@@ -8,16 +8,16 @@
 
 import Foundation
 
-class ArticleListViewModel
+@objcMembers class ArticleListViewModel: NSObject
 {
     var articlesSource: ArticlesSourceProtocol
     var imageCache:     WebImageCacheProtocol
 
-    var title:      String                 = "New York Times Most Viewed"
+    var title: String = "New York Times Most Viewed"
 
-    var articles:   Binder<[ArticleModel]> = Binder([ArticleModel]())
-    var error:      Binder<String?>        = Binder(nil)
-    var isLoading:  Binder<Bool>           = Binder(false)
+    dynamic var articles:    [ArticleModel] = []
+    dynamic var errorString: String?        = nil
+    dynamic var isLoading:   Bool           = false
 
     private var cellViewModels = [ArticleListCellViewModel]()
 
@@ -26,32 +26,34 @@ class ArticleListViewModel
         self.articlesSource = articlesSource
         self.imageCache     = imageCache
 
+        super.init()
+
         self.loadArticles()
     }
 
     func loadArticles()
     {
-        guard !self.isLoading.value else { return }
+        guard !self.isLoading else { return }
 
-        self.isLoading.value = true
+        self.isLoading = true
 
         self.articlesSource.getArticles
-        { [unowned self] (articles, error) in
-            self.isLoading.value = false
-            self.error.value     = error
+        { [unowned self] (articles, errorString) in
+            self.isLoading   = false
+            self.errorString = errorString
             
             if let articles = articles
             {
                 self.cellViewModels = articles.map { ArticleListCellViewModel(article: $0, imageCache: self.imageCache) }
-                self.articles.value = articles
+                self.articles = articles
             }
             else
             {
                 self.cellViewModels = []
-                self.articles.value = []
+                self.articles = []
             }
             
-            self.articles.value = articles ?? []
+            self.articles = articles ?? []
         }
     }
 

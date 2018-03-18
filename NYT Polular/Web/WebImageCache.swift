@@ -66,7 +66,7 @@ class WebImageCache: WebImageCacheProtocol
         }
 
         self.dataTasks[urlString] = self.webInterface.getRequest(toUrlString: urlString, completion:
-        { (data, error) in
+        { (data, errorString) in
             if let data = data
             {
                 let image = UIImage(data: data)
