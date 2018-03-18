@@ -8,24 +8,28 @@
 
 import Foundation
 import UIKit
+import CoreData
 
 class ArticleListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource
 {
     @IBOutlet private var tableView: UITableView!
 
-    private var webInterface:  WebInterfaceProtocol
-    private var webImageCache: WebImageCacheProtocol
-    private var statusLabel:   UILabel!
-    private let loadingText:   String = "Loading..."
+    private var webInterface:   WebInterfaceProtocol
+    private var webImageCache:  WebImageCacheProtocol
+    private var dataRepository: DataRepositoryProtocol
+
+    private var statusLabel:    UILabel!
+    private let loadingText:    String = "Loading..."
 
     private var errorObserver:     NSKeyValueObservation?
     private var isLoadingObserver: NSKeyValueObservation?
     private var articlesObserver:  NSKeyValueObservation?
 
-    init(webInterface: WebInterfaceProtocol, webImageCache: WebImageCacheProtocol)
+    init(webInterface: WebInterfaceProtocol, webImageCache: WebImageCacheProtocol, dataRepository: DataRepositoryProtocol)
     {
-        self.webInterface  = webInterface
-        self.webImageCache = webImageCache
+        self.webInterface   = webInterface
+        self.webImageCache  = webImageCache
+        self.dataRepository = dataRepository
 
         super.init(nibName: "ArticleListViewController", bundle: nil)
     }
@@ -58,7 +62,8 @@ class ArticleListViewController: UIViewController, UITableViewDelegate, UITableV
     private lazy var viewModel: ArticleListViewModel =
     {
         return ArticleListViewModel(articlesSource: WebArticlesSource(webInterface: self.webInterface),
-                                    imageCache: self.webImageCache)
+                                    imageCache: self.webImageCache,
+                                    dataRepository: self.dataRepository)
     }()
 
     @objc private func handleRefresh(_ refreshControl: UIRefreshControl)

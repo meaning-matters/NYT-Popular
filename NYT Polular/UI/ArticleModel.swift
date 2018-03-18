@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import CoreData
 
 @objcMembers class ArticleModel: NSObject
 {
@@ -39,5 +40,18 @@ import Foundation
         self.source       = source
         self.thumbnailUrl = thumbnailUrl
         self.imageUrl     = imageUrl
+    }
+
+    init(article: Article)
+    {
+        self.url          = article.url!
+        self.section      = article.section!
+        self.byline       = article.byline!
+        self.title        = article.title!
+        self.abstract     = article.abstract!
+        self.date         = article.date!
+        self.source       = article.source!
+        self.thumbnailUrl = article.thumbnailUrl
+        self.imageUrl     = article.imageUrl
     }
 }

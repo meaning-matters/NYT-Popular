@@ -7,11 +7,13 @@
 //
 
 import Foundation
+import CoreData
 
 @objcMembers class ArticleListViewModel: NSObject
 {
     var articlesSource: ArticlesSourceProtocol
     var imageCache:     WebImageCacheProtocol
+    var dataRepository: DataRepositoryProtocol
 
     var title: String = "New York Times Most Viewed"
 
@@ -21,10 +23,11 @@ import Foundation
 
     private var cellViewModels = [ArticleListCellViewModel]()
 
-    init(articlesSource: ArticlesSourceProtocol, imageCache: WebImageCacheProtocol)
+    init(articlesSource: ArticlesSourceProtocol, imageCache: WebImageCacheProtocol, dataRepository: DataRepositoryProtocol)
     {
         self.articlesSource = articlesSource
         self.imageCache     = imageCache
+        self.dataRepository = dataRepository
 
         super.init()
 
@@ -37,23 +40,31 @@ import Foundation
 
         self.isLoading = true
 
-        self.articlesSource.getArticles
+        self.articlesSource.loadArticles
         { [unowned self] (articles, errorString) in
             self.isLoading   = false
             self.errorString = errorString
-            
+
             if let articles = articles
             {
-                self.cellViewModels = articles.map { ArticleListCellViewModel(article: $0, imageCache: self.imageCache) }
-                self.articles = articles
+                for article in articles
+                {
+                    self.dataRepository.addUniqueArticle(url:          article.url,
+                                                         section:      article.section,
+                                                         byline:       article.byline,
+                                                         title:        article.title,
+                                                         abstract:     article.abstract,
+                                                         date:         article.date,
+                                                         source:       article.source,
+                                                         thumbnailUrl: article.thumbnailUrl,
+                                                         imageUrl:     article.imageUrl)
+                }
             }
-            else
-            {
-                self.cellViewModels = []
-                self.articles = []
-            }
-            
-            self.articles = articles ?? []
+
+            self.dataRepository.save()
+
+            self.articles       = self.dataRepository.fetchArticles().map { ArticleModel(article: $0) }
+            self.cellViewModels = self.articles.map { ArticleListCellViewModel(article: $0, imageCache: self.imageCache) }
         }
     }
 

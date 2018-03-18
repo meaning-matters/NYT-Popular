@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		481E342B205DB5C7005CC92F /* String+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 481E342A205DB5C7005CC92F /* String+Utility.swift */; };
+		481E3438205ECAEC005CC92F /* Article+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 481E3434205ECAEC005CC92F /* Article+CoreDataClass.swift */; };
+		481E3439205ECAEC005CC92F /* Article+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 481E3435205ECAEC005CC92F /* Article+CoreDataProperties.swift */; };
+		481E343A205ECAEC005CC92F /* Favorite+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 481E3436205ECAEC005CC92F /* Favorite+CoreDataClass.swift */; };
+		481E343B205ECAEC005CC92F /* Favorite+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 481E3437205ECAEC005CC92F /* Favorite+CoreDataProperties.swift */; };
+		481E343F205EDF1E005CC92F /* DataRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 481E343D205EDBC9005CC92F /* DataRepository.swift */; };
 		484870F0205D159C00645DB5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 484870EF205D159C00645DB5 /* AppDelegate.swift */; };
 		484870F2205D159C00645DB5 /* ArticleListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 484870F1205D159C00645DB5 /* ArticleListViewController.swift */; };
 		484870F8205D159C00645DB5 /* NYT_Polular.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 484870F6205D159C00645DB5 /* NYT_Polular.xcdatamodeld */; };
@@ -37,6 +42,11 @@
 
 /* Begin PBXFileReference section */
 		481E342A205DB5C7005CC92F /* String+Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Utility.swift"; sourceTree = "<group>"; };
+		481E3434205ECAEC005CC92F /* Article+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Article+CoreDataClass.swift"; sourceTree = "<group>"; };
+		481E3435205ECAEC005CC92F /* Article+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Article+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		481E3436205ECAEC005CC92F /* Favorite+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Favorite+CoreDataClass.swift"; sourceTree = "<group>"; };
+		481E3437205ECAEC005CC92F /* Favorite+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Favorite+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		481E343D205EDBC9005CC92F /* DataRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataRepository.swift; sourceTree = "<group>"; };
 		484870EC205D159C00645DB5 /* NYT Polular.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "NYT Polular.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		484870EF205D159C00645DB5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		484870F1205D159C00645DB5 /* ArticleListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleListViewController.swift; sourceTree = "<group>"; };
@@ -76,9 +86,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		481E343C205ECB0D005CC92F /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				481E3434205ECAEC005CC92F /* Article+CoreDataClass.swift */,
+				481E3435205ECAEC005CC92F /* Article+CoreDataProperties.swift */,
+				481E3436205ECAEC005CC92F /* Favorite+CoreDataClass.swift */,
+				481E3437205ECAEC005CC92F /* Favorite+CoreDataProperties.swift */,
+				481E343D205EDBC9005CC92F /* DataRepository.swift */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
 		484870E3205D159C00645DB5 = {
 			isa = PBXGroup;
 			children = (
+				481E343C205ECB0D005CC92F /* Data */,
 				484870EE205D159C00645DB5 /* NYT Polular */,
 				48487106205D159C00645DB5 /* NYT PolularTests */,
 				484870ED205D159C00645DB5 /* Products */,
@@ -257,11 +280,16 @@
 				48487117205D5BC400645DB5 /* WebInterface.swift in Sources */,
 				4848711F205D6FA900645DB5 /* WebArticlesSource.swift in Sources */,
 				48487124205D704D00645DB5 /* ArticleModel.swift in Sources */,
+				481E343A205ECAEC005CC92F /* Favorite+CoreDataClass.swift in Sources */,
 				484870F2205D159C00645DB5 /* ArticleListViewController.swift in Sources */,
+				481E3439205ECAEC005CC92F /* Article+CoreDataProperties.swift in Sources */,
 				48487126205D711000645DB5 /* ArticleListCell.swift in Sources */,
 				4848711D205D5CC000645DB5 /* WebImageCache.swift in Sources */,
+				481E3438205ECAEC005CC92F /* Article+CoreDataClass.swift in Sources */,
+				481E343F205EDF1E005CC92F /* DataRepository.swift in Sources */,
 				484870F8205D159C00645DB5 /* NYT_Polular.xcdatamodeld in Sources */,
 				484870F0205D159C00645DB5 /* AppDelegate.swift in Sources */,
+				481E343B205ECAEC005CC92F /* Favorite+CoreDataProperties.swift in Sources */,
 				481E342B205DB5C7005CC92F /* String+Utility.swift in Sources */,
 				4848712A205D716E00645DB5 /* ArticleListCellViewModel.swift in Sources */,
 				48487128205D714200645DB5 /* ArticleListViewModel.swift in Sources */,

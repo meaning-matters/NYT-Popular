@@ -8,8 +8,6 @@
 
 import Foundation
 
-typealias Dictionary = [String:AnyObject]
-
 /// Supplies a list articles.
 protocol ArticlesSourceProtocol
 {
@@ -17,7 +15,7 @@ protocol ArticlesSourceProtocol
     ///
     /// - Parameter completion: Called on main thread when the fetch has finished.  Supplies an array of Article
     ///                         objects. On error, `nil` is supplied, together with an error string.
-    func getArticles(completion: @escaping (_ articles: [ArticleModel]?, _ errorString: String?) -> ())
+    func loadArticles(completion: @escaping (_ articles: [ArticleModel]?, _ errorString: String?) -> ())
 }
 
 /// Retrieves articles from the NYT web API.  The returned JSON has the following format (with example data):
@@ -85,11 +83,9 @@ protocol ArticlesSourceProtocol
 ///         ]
 ///     }
 ///
-/// This format is parsed in a hard-coded way and assumptions about the format are made.  This is acceptable for this
-/// demo, but not for production quality code.
 class WebArticlesSource: ArticlesSourceProtocol
 {
-    private struct MostViewed: Codable
+    struct MostViewed: Codable
     {
         struct Result: Codable
         {
@@ -135,7 +131,7 @@ class WebArticlesSource: ArticlesSourceProtocol
         self.webInterface = webInterface
     }
 
-    func getArticles(completion: @escaping (_ articles: [ArticleModel]?, _ errorString: String?) -> ())
+    func loadArticles(completion: @escaping (_ articles: [ArticleModel]?, _ errorString: String?) -> ())
     {
         webInterface.getRequest(toUrlString: urlString)
         { (data, errorString) in
