@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="TimesNewRoman.ttf">
+            <string>TimesNewRomanPSMT</string>
+        </array>
+        <array key="TimesNewRomanBoldItalic.ttf">
+            <string>TimesNewRomanPS-BoldItalicMT</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ArticleViewController" customModule="NYT_Popular" customModuleProvider="target">
+            <connections>
+                <outlet property="abstractLabel" destination="yDx-tQ-bNy" id="Vtc-vG-GeN"/>
+                <outlet property="bylineLabel" destination="lp5-T7-D4p" id="H3S-3H-Jll"/>
+                <outlet property="goButton" destination="xN0-Kk-fkx" id="8L0-cZ-gvq"/>
+                <outlet property="imageRatioContraint" destination="U8Y-nq-qKK" id="PlY-U1-yLo"/>
+                <outlet property="imageView" destination="95O-gk-gDp" id="uN7-ev-W87"/>
+                <outlet property="titleLabel" destination="pmV-zq-A5q" id="1uO-El-DwY"/>
+                <outlet property="view" destination="iN0-l3-epB" id="dGj-WE-MF4"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pmV-zq-A5q">
+                    <rect key="frame" x="16" y="30" width="343" height="84.5"/>
+                    <constraints>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="23" id="K6V-RZ-poy"/>
+                    </constraints>
+                    <string key="text">The quick brown fox jumped over the lazy dog and thought is was goodThe quick brown fox jumped over the lazy dog and thought is was good</string>
+                    <fontDescription key="fontDescription" name="TimesNewRomanPS-BoldItalicMT" family="Times New Roman" pointSize="19"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lp5-T7-D4p">
+                    <rect key="frame" x="16" y="122" width="343" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="IRA-gq-7An"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="TimesNewRomanPSMT" family="Times New Roman" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1" verticalCompressionResistancePriority="1" image="DetailPlaceholder" translatesAutoresizingMaskIntoConstraints="NO" id="95O-gk-gDp">
+                    <rect key="frame" x="16" y="151" width="343" height="158"/>
+                    <constraints>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" priority="900" constant="100" id="AdC-Fm-1yV"/>
+                        <constraint firstAttribute="width" secondItem="95O-gk-gDp" secondAttribute="height" multiplier="343:167" constant="18.485029940119773" id="U8Y-nq-qKK"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yDx-tQ-bNy">
+                    <rect key="frame" x="16" y="326" width="343" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="CcC-1y-Nzp"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="TimesNewRomanPSMT" family="Times New Roman" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xN0-Kk-fkx">
+                    <rect key="frame" x="16" y="355" width="343" height="44"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="44" id="hbB-Wm-0eJ"/>
+                    </constraints>
+                    <state key="normal" title="Button"/>
+                    <connections>
+                        <action selector="goAction:" destination="-1" eventType="touchUpInside" id="ry1-px-dYT"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="pmV-zq-A5q" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="0rf-Ri-vee"/>
+                <constraint firstItem="95O-gk-gDp" firstAttribute="width" relation="lessThanOrEqual" secondItem="lp5-T7-D4p" secondAttribute="width" id="6RS-Je-dyr"/>
+                <constraint firstItem="yDx-tQ-bNy" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="9vA-Pz-dJT"/>
+                <constraint firstItem="pmV-zq-A5q" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="10" id="F1z-73-fmh"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="xN0-Kk-fkx" secondAttribute="trailing" constant="16" id="LQr-sb-Def"/>
+                <constraint firstItem="95O-gk-gDp" firstAttribute="top" secondItem="lp5-T7-D4p" secondAttribute="bottom" constant="8" id="XSI-l9-wsj"/>
+                <constraint firstItem="lp5-T7-D4p" firstAttribute="top" secondItem="pmV-zq-A5q" secondAttribute="bottom" constant="7.5" id="Yv3-kJ-Deq"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="xN0-Kk-fkx" secondAttribute="bottom" constant="10" id="bWL-xu-Ov5"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="yDx-tQ-bNy" secondAttribute="trailing" constant="16" id="biv-gP-ver"/>
+                <constraint firstItem="xN0-Kk-fkx" firstAttribute="top" secondItem="yDx-tQ-bNy" secondAttribute="bottom" constant="8" id="d4s-Sa-H5K"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="pmV-zq-A5q" secondAttribute="trailing" constant="16" id="iKK-nF-3U6"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="lp5-T7-D4p" secondAttribute="trailing" constant="16" id="jCN-cQ-SHM"/>
+                <constraint firstItem="lp5-T7-D4p" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="jeG-Yw-WWo"/>
+                <constraint firstItem="yDx-tQ-bNy" firstAttribute="top" secondItem="95O-gk-gDp" secondAttribute="bottom" constant="17" id="lvL-JS-TCS"/>
+                <constraint firstItem="xN0-Kk-fkx" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="muA-uj-GqP"/>
+                <constraint firstItem="95O-gk-gDp" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="odJ-C7-mk1"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <point key="canvasLocation" x="26.5" y="51.5"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="DetailPlaceholder" width="363" height="167"/>
+    </resources>
+</document>

@@ -59,6 +59,16 @@ class ArticleListViewController: UIViewController, UITableViewDelegate, UITableV
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "List", style: .plain, target: nil, action: nil)
     }
 
+    override func viewWillAppear(_ animated: Bool)
+    {
+        super.viewWillAppear(animated)
+
+        if let indexPath = tableView.indexPathForSelectedRow
+        {
+            self.tableView.deselectRow(at: indexPath, animated: true)
+        }
+    }
+
     private lazy var viewModel: ArticleListViewModel =
     {
         return ArticleListViewModel(articlesSource: WebArticlesSource(webInterface: self.webInterface),
@@ -133,5 +143,9 @@ class ArticleListViewController: UIViewController, UITableViewDelegate, UITableV
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
+        let articleViewModel      = ArticleViewModel(self.viewModel.articles[indexPath.row], imageCache: self.webImageCache)
+        let articleViewController = ArticleViewController(viewModel: articleViewModel, imageCache: self.webImageCache)
+
+        self.navigationController?.pushViewController(articleViewController, animated: true)
     }
 }
