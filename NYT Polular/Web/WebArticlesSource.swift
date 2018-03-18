@@ -77,10 +77,11 @@ protocol ArticlesSourceProtocol
 ///                             },
 ///                             ... <N 'media-metadata' items>
 ///                         ]
-///                     }
+///                     },
+///                     ... <M 'media' items>
 ///                 ]
 ///             },
-///             ... <M 'results' items>
+///             ... <R 'results' items>
 ///         ]
 ///     }
 ///
@@ -88,6 +89,43 @@ protocol ArticlesSourceProtocol
 /// demo, but not for production quality code.
 class WebArticlesSource: ArticlesSourceProtocol
 {
+    private struct MostViewed: Codable
+    {
+        struct Result: Codable
+        {
+            var url:            String
+            var section:        String
+            var byline:         String
+            var title:          String
+            var abstract:       String
+            var published_date: String
+            var source:         String
+
+            struct Media: Codable
+            {
+                struct Metadata: Codable
+                {
+                    var url:    String
+                    var format: String
+                }
+
+                var type:     String
+                var metadata: [Metadata]
+
+                private enum CodingKeys: String, CodingKey
+                {
+                    case type     = "type"
+                    case metadata = "media-metadata"
+                }
+            }
+
+            var media: [Media]
+        }
+
+        var status:  String
+        var results: [Result]
+    }
+
     private let urlString = "https://api.nytimes.com/svc/mostpopular/v2/mostviewed/all-sections/7.json?apikey=6f1888ceb12041799e62181b35463f6b"
 
     private var webInterface: WebInterfaceProtocol
@@ -122,43 +160,35 @@ class WebArticlesSource: ArticlesSourceProtocol
                 return
             }
 
-            var object: AnyObject
             do
             {
-                object = try JSONSerialization.jsonObject(with: patchedData, options: []) as AnyObject
-            }
-            catch let error
-            {
-                completion(nil, error.localizedDescription)
+                let mostViewed = try JSONDecoder().decode(MostViewed.self, from: patchedData)
 
-                return
-            }
-
-            if let dictionary = object as? Dictionary, dictionary["status"] as? String == "OK"
-            {
-                if let results = dictionary["results"] as? [Dictionary]
+                if mostViewed.status == "OK"
                 {
-                    let articles = results.map
+                    let articles = mostViewed.results.map
                     {
-                        // It's assumed that all element, except the images, are always present. Yet, as a safegaurd,
-                        // they are sinked to "" in case this assumption fails.
-                        return ArticleModel(url:          $0["url"] as? String ?? "",
-                                            section:      $0["section"] as? String ?? "",
-                                            byline:       $0["byline"] as? String ?? "",
-                                            title:        $0["title"] as? String ?? "",
-                                            abstract:     $0["abstract"] as? String ?? "",
-                                            date:         $0["published_date"] as? String ?? "",
-                                            source:       $0["source"] as? String ?? "",
+                        return ArticleModel(url:          $0.url,
+                                            section:      $0.section,
+                                            byline:       $0.byline,
+                                            title:        $0.title,
+                                            abstract:     $0.abstract,
+                                            date:         $0.published_date,
+                                            source:       $0.source,
                                             thumbnailUrl: self.getThumbnailUrl(from: $0),
                                             imageUrl:     self.getImageUrl(from: $0))
                     }
 
                     completion(articles, nil)
                 }
+                else
+                {
+                    completion(nil, "Error getting data from NYT")
+                }
             }
-            else
+            catch
             {
-                completion(nil, "Error getting data from NYT")
+                completion(nil, "Unexpected data received")
             }
         }
     }
@@ -173,7 +203,7 @@ class WebArticlesSource: ArticlesSourceProtocol
         var string = String(data: data, encoding: .utf8)
 
         // Replace occurences of empty "media" as string, with an empty array.
-        string?.replaceMatches(of: "\"media\":\"\"", with: "[]")
+        string?.replaceMatches(of: "\"media\":\"\"", with: "\"media\":[]")
 
         return string?.data(using: .utf8)
     }
@@ -182,7 +212,7 @@ class WebArticlesSource: ArticlesSourceProtocol
     ///
     /// - Parameter result: Data as received from NYT.
     /// - Returns:          URL to online image, or `nil`.
-    private func getThumbnailUrl(from result: Dictionary) -> String?
+    private func getThumbnailUrl(from result: MostViewed.Result) -> String?
     {
         return self.getImageUrlWithFormat("Large Thumbnail", from: result)
     }
@@ -191,7 +221,7 @@ class WebArticlesSource: ArticlesSourceProtocol
     ///
     /// - Parameter result: Data as received from NYT.
     /// - Returns:          URL to online image, or `nil`.
-    private func getImageUrl(from result: Dictionary) -> String?
+    private func getImageUrl(from result: MostViewed.Result) -> String?
     {
         return self.getImageUrlWithFormat("square640", from: result)
     }
@@ -202,13 +232,12 @@ class WebArticlesSource: ArticlesSourceProtocol
     ///   - format: The NYT data's format specifier of the wanted image.
     ///   - result: Data as received from NYT.
     /// - Returns:  URL to online image that conform to supplied `format`, or `nil`.
-    private func getImageUrlWithFormat(_ format: String, from result: Dictionary) -> String?
+    private func getImageUrlWithFormat(_ format: String, from result: MostViewed.Result) -> String?
     {
-        if let media    = result["media"] as? [Dictionary],
-            let metadata = media[0]["media-metadata"] as? [Dictionary],
-            let item     = (metadata.filter { $0["format"] as? String == format }).first
+        if let images   = (result.media.filter { $0.type == "image" }).first,
+           let metadata = (images.metadata.filter { $0.format == format }).first
         {
-            return item["url"] as? String
+            return metadata.url
         }
         else
         {
