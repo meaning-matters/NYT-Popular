@@ -20,16 +20,16 @@ protocol WebInterfaceProtocol
     ///   - completion: Called on the main thread when loading has finished or failed. Passes data or an error string.
     /// - Returns:      The session task that performs the load.
     @discardableResult func getRequest(toUrlString urlString: String,
-                                       completion: @escaping(Data?, String?) -> Void) -> URLSessionDataTask
+                                       completion: @escaping(Data?, String?) -> Void) -> URLSessionDataTask?
 }
 
 /// Class to perform web requests.
 class WebInterface: WebInterfaceProtocol
 {
     @discardableResult func getRequest(toUrlString urlString: String,
-                                       completion: @escaping(Data?, String?) -> Void) -> URLSessionDataTask
+                                       completion: @escaping(Data?, String?) -> Void) -> URLSessionDataTask?
     {
-        let url     = URL(string: urlString)! // TODO: Check `url`; currently assume it's never `nil`.
+        guard let url = URL(string: urlString) else { completion(nil, "Invalid URL."); return nil }
         var request = URLRequest(url: url)
 
         // TODO: For this demo only, to make sure we always reload fresh data.

@@ -30,6 +30,13 @@ class ArticleListViewController: UIViewController, UITableViewDelegate, UITableV
     private var articlesObserver:  NSKeyValueObservation?
     private var favoritesObserver: NSKeyValueObservation?
 
+    private lazy var viewModel: ArticleListViewModel =
+    {
+        return ArticleListViewModel(articlesSource: ArticlesSource(webInterface: self.webInterface),
+                                    imageCache: self.imageCache,
+                                    dataRepository: self.dataRepository)
+    }()
+
     // MARK: - Lifecycle & View Controller
 
     init(webInterface: WebInterfaceProtocol, imageCache: ImageCacheProtocol, dataRepository: DataRepositoryProtocol)
@@ -78,13 +85,6 @@ class ArticleListViewController: UIViewController, UITableViewDelegate, UITableV
             self.tableView.deselectRow(at: indexPath, animated: true)
         }
     }
-
-    private lazy var viewModel: ArticleListViewModel =
-    {
-        return ArticleListViewModel(articlesSource: ArticlesSource(webInterface: self.webInterface),
-                                    imageCache: self.imageCache,
-                                    dataRepository: self.dataRepository)
-    }()
 
     // MARK: - Local
 

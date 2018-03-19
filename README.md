@@ -8,6 +8,8 @@ Articles can be deleted. At the moment this is only temporary, a reload (by drag
 
 Articles and favorites are sorted first on date and then on main article title.
 
+Here's a list of remarks that are there due to time constraints.  Well preparing this work for KLM already cost over 2 full days.  One simple has to stop somewhere.  In case you're missing certain aspects of app development you'd still like to see me do, please ask and I'll extend the app.
+
 ## Remarks
 
 - Type of a app is slightly different than requested.  It does display my experience with many or all relevant techniques for this demo.  I wanted to save time by reusing demo code I wrote only a few weeks ago.  A lot was added: saving data in Core Data, parsing JSON using Swift 4 Codable, use of Swift 4 KVO, implementing favorites, adding delete functionality, adding iPad support (using split view), ...
@@ -21,8 +23,9 @@ Articles and favorites are sorted first on date and then on main article title.
 
 ## Know Issues
 
-- Adding favorite and deleting are not animated on the list table yet.
-- All thumbnail images are still loaded immediately, instead of when its cell is about to be shown.  Images should be loaded only when they (almost) appear on screen.  (The list is only 20 long and images small, so it's not a big deal for this demo.)
+- Adding favorite and deleting an article are not animated on the table yet.
+- All thumbnail images are loaded immediately, instead of when its cell is about to be shown.  Images should be loaded only when they (almost) appear on screen.  (The list is only 20 long and images small, so it's not a big deal for this demo.)
 - The image cache implementation saves all images but never frees up memory yet.  A real app that handles many (larger) images, should have a mechanism to limit memory use.
 - When app starts on iPad there's no nice empty/'we're loading' detail view yet.
 - The disclosure indicator on the table cell should not be displayed on iPad.
+- If there are articles in the database, they are not immediately loaded at app startup yet.

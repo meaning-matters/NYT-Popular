@@ -15,8 +15,12 @@ import CoreData
     var date:    NSDate         // Favorite creation date.
     var article: ArticleModel
 
+    // MARK: - Lifecycle
+
     init(favorite: Favorite)
     {
+        // `NSManagedObject` properties are optional. In the database model however, both `date` and `article`
+        // are non-optional. Therefore the force unwrappings below won't cause trouble.
         self.date    = favorite.date!
         self.article = ArticleModel(article: favorite.article!)
     }

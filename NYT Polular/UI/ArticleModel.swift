@@ -48,6 +48,8 @@ import CoreData
 
     init(article: Article)
     {
+        // `NSManagedObject` properties are optional. In the database model however, only `thumbnailUrl` and `imageUrl`
+        // are optional. Therefore the force unwrappings below won't cause trouble.
         self.url          = article.url!
         self.section      = article.section!
         self.byline       = article.byline!
