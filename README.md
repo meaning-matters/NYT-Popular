@@ -21,4 +21,5 @@ When a table cell is tapped a detail view is shown with more information and the
 - Adding favorite and deleting are not animated on the list table yet.
 - All thumbnail images are still loaded immediately, instead of when its cell is about to be shown.  Images should be loaded only when they (almost) appear on screen.  (The list is only 20 long and images small, so it's not a big deal for this demo.)
 - The image cache implementation saves all images but never frees up memory yet.  A real app that handles many (larger) images, should have a mechanism to limit memory use.
+- Articles in table are not sorted yet.  Favorite already has a date to support that.
 - When app starts on iPad detail view is not set initially.
