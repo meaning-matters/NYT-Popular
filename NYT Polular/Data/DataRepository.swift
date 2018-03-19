@@ -27,7 +27,11 @@ protocol DataRepositoryProtocol
 
     func fetchArticles() -> [Article]
 
-    func fetchFavoriteArticles() -> [Article]
+    func fetchFavorites() -> [Favorite]
+
+    func addFavorite(article: Article)
+
+    func removeFavorite(article: Article)
 
     func save()
 }
@@ -88,6 +92,11 @@ class DataRepository: DataRepositoryProtocol
 
     func delete(article: Article)
     {
+        if let favorite = article.favorite
+        {
+            self.dataContext.delete(favorite)
+        }
+        
         self.dataContext.delete(article)
     }
 
@@ -105,9 +114,33 @@ class DataRepository: DataRepositoryProtocol
         }
     }
 
-    func fetchFavoriteArticles() -> [Article]
+    func fetchFavorites() -> [Favorite]
     {
-        return []
+        do
+        {
+            return try self.dataContext.fetch(Favorite.fetchRequest())
+        }
+        catch let error as NSError
+        {
+            print("Fetch failed: \(error), \(error.userInfo)")
+
+            return []
+        }
+    }
+
+    func addFavorite(article: Article)
+    {
+        let favorite = Favorite(entity: Favorite.entity(), insertInto: self.dataContext)
+        favorite.article = article
+        favorite.date    = NSDate()
+    }
+
+    func removeFavorite(article: Article)
+    {
+        if let favorite = article.favorite
+        {
+            self.dataContext.delete(favorite)
+        }
     }
 
     func save()

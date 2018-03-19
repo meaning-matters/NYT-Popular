@@ -2,8 +2,9 @@
 //  Favorite+CoreDataProperties.swift
 //  NYT Polular
 //
-//  Created by Cornelis van der Bent on 18/03/2018.
+//  Created by Cornelis van der Bent on 19/03/2018.
 //  Copyright © 2018 Cornelis. All rights reserved.
+//
 //
 
 import Foundation
@@ -16,5 +17,6 @@ extension Favorite
         return NSFetchRequest<Favorite>(entityName: "Favorite")
     }
 
+    @NSManaged public var date:    NSDate?
     @NSManaged public var article: Article?
 }

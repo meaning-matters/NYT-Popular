@@ -23,7 +23,7 @@ protocol ArticlesSourceProtocol
 ///     {
 ///         "status"      : "OK",
 ///         "copyright"   : "Copyright (c) 2018 The New York Times Company.  All Rights Reserved.",
-///         "num_results" : 1783,
+///         "num_results" : 20,
 ///         "results"     :
 ///         [
 ///             {

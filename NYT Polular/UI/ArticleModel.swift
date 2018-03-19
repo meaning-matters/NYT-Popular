@@ -20,6 +20,7 @@ import CoreData
     var source:       String
     var thumbnailUrl: String?
     var imageUrl:     String?
+    var isFavorite:   Bool
 
     init(url:          String,
          section:      String,
@@ -29,7 +30,8 @@ import CoreData
          date:         String,
          source:       String,
          thumbnailUrl: String?,
-         imageUrl:     String?)
+         imageUrl:     String?,
+         isFavorite:   Bool = false)
     {
         self.url          = url
         self.section      = section
@@ -40,6 +42,7 @@ import CoreData
         self.source       = source
         self.thumbnailUrl = thumbnailUrl
         self.imageUrl     = imageUrl
+        self.isFavorite   = isFavorite
     }
 
     init(article: Article)
@@ -53,5 +56,6 @@ import CoreData
         self.source       = article.source!
         self.thumbnailUrl = article.thumbnailUrl
         self.imageUrl     = article.imageUrl
+        self.isFavorite   = (article.favorite != nil)
     }
 }

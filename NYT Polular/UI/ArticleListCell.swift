@@ -36,7 +36,7 @@ class ArticleListCell: UITableViewCell
     {
         self.thumbnailObserver = self.viewModel.observe(\.thumbnail)
         { [weak self] (viewModel, changes) in
-            self?.thumbnailView.image = viewModel.thumbnail
+            self?.thumbnailView.image = viewModel.thumbnail ?? UIImage(named: "ListPlaceholder")
         }
     }
 }

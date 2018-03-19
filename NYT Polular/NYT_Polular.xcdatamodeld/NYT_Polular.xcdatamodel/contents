@@ -10,12 +10,14 @@
         <attribute name="thumbnailUrl" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" attributeType="String" syncable="YES"/>
         <attribute name="url" attributeType="String" syncable="YES"/>
+        <relationship name="favorite" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Favorite" inverseName="article" inverseEntity="Favorite" syncable="YES"/>
     </entity>
     <entity name="Favorite" representedClassName=".Favorite" syncable="YES">
-        <relationship name="article" maxCount="1" deletionRule="Nullify" destinationEntity="Article" syncable="YES"/>
+        <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <relationship name="article" maxCount="1" deletionRule="Nullify" destinationEntity="Article" inverseName="favorite" inverseEntity="Article" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Article" positionX="-837" positionY="90" width="128" height="178"/>
-        <element name="Favorite" positionX="-639" positionY="131" width="128" height="58"/>
+        <element name="Article" positionX="-837" positionY="90" width="128" height="195"/>
+        <element name="Favorite" positionX="-639" positionY="131" width="128" height="75"/>
     </elements>
 </model>

@@ -24,6 +24,7 @@ class ArticleListViewController: UIViewController, UITableViewDelegate, UITableV
     private var errorObserver:     NSKeyValueObservation?
     private var isLoadingObserver: NSKeyValueObservation?
     private var articlesObserver:  NSKeyValueObservation?
+    private var favoritesObserver: NSKeyValueObservation?
 
     init(webInterface: WebInterfaceProtocol, webImageCache: WebImageCacheProtocol, dataRepository: DataRepositoryProtocol)
     {
@@ -120,16 +121,45 @@ class ArticleListViewController: UIViewController, UITableViewDelegate, UITableV
         }
 
         self.articlesObserver = self.viewModel.observe(\.articles)
-        { [weak self] (viewModel, change) in
-            self?.tableView.reloadData()
+        { [unowned self] (viewModel, change) in
+            self.tableView.reloadData()
+        }
+
+        self.favoritesObserver = self.viewModel.observe(\.favorites)
+        { [unowned self] (viewModel, change) in
+            self.tableView.reloadData()
         }
     }
 
     // MARK: - Table View
 
+    func numberOfSections(in tableView: UITableView) -> Int
+    {
+        return (self.viewModel.articles.count > 0) ? ((self.viewModel.favorites.count > 0) ? 2 : 1) : 0
+    }
+
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String?
+    {
+        if tableView.numberOfSections == 2 && section == 0
+        {
+            return "Favorite Articles"
+        }
+        else
+        {
+            return "All Articles"
+        }
+    }
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
-        return self.viewModel.articles.count
+        if tableView.numberOfSections == 2 && section == 0
+        {
+            return self.viewModel.favorites.count
+        }
+        else
+        {
+            return self.viewModel.articles.count
+        }
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
@@ -143,9 +173,21 @@ class ArticleListViewController: UIViewController, UITableViewDelegate, UITableV
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
-        let articleViewModel      = ArticleViewModel(self.viewModel.articles[indexPath.row], imageCache: self.webImageCache)
-        let articleViewController = ArticleViewController(viewModel: articleViewModel, imageCache: self.webImageCache)
+        let index = self.viewModel.articleIndex(for: indexPath)
+        let articleViewModel      = ArticleViewModel(self.viewModel.articles[index],
+                                                     listViewModel: self.viewModel,
+                                                     imageCache: self.webImageCache,
+                                                     dataRepository: self.dataRepository)
+        let articleViewController = ArticleViewController(viewModel: articleViewModel)
 
         self.navigationController?.pushViewController(articleViewController, animated: true)
+    }
+
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath)
+    {
+        if editingStyle == .delete
+        {
+            self.viewModel.deleteArticle(at: indexPath)
+        }
     }
 }

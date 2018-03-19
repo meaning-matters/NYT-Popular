@@ -17,9 +17,10 @@ import CoreData
 
     var title: String = "New York Times Most Viewed"
 
-    dynamic var articles:    [ArticleModel] = []
-    dynamic var errorString: String?        = nil
-    dynamic var isLoading:   Bool           = false
+    dynamic var articles:    [ArticleModel]  = []
+    dynamic var favorites:   [FavoriteModel] = []
+    dynamic var errorString: String?         = nil
+    dynamic var isLoading:   Bool            = false
 
     private var cellViewModels = [ArticleListCellViewModel]()
 
@@ -65,11 +66,38 @@ import CoreData
 
             self.articles       = self.dataRepository.fetchArticles().map { ArticleModel(article: $0) }
             self.cellViewModels = self.articles.map { ArticleListCellViewModel(article: $0, imageCache: self.imageCache) }
+            self.favorites      = self.dataRepository.fetchFavorites().map { FavoriteModel(favorite: $0) }
+        }
+    }
+
+    func articleIndex(for indexPath: IndexPath) -> Int
+    {
+        if self.favorites.count > 0 && indexPath.section == 0
+        {
+            let article = self.articles.filter { $0.url == self.favorites[indexPath.row].article.url }.first!
+            return self.articles.index(of: article)!
+        }
+        else
+        {
+            return indexPath.row
         }
     }
 
     func cellViewModel(at indexPath: IndexPath) -> ArticleListCellViewModel
     {
-        return cellViewModels[indexPath.row]
+        return self.cellViewModels[self.articleIndex(for: indexPath)]
+    }
+
+    func deleteArticle(at indexPath: IndexPath)
+    {
+        let index = self.articleIndex(for: indexPath)
+        if let article = self.dataRepository.findArticleWithUrl(url: self.articles[index].url)
+        {
+            self.dataRepository.delete(article: article)
+            self.dataRepository.save()
+            
+            self.articles       = self.dataRepository.fetchArticles().map { ArticleModel(article: $0) }
+            self.cellViewModels = self.articles.map { ArticleListCellViewModel(article: $0, imageCache: self.imageCache) }
+        }
     }
 }
