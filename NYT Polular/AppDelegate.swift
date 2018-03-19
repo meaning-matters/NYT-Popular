@@ -20,14 +20,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate
         let webImageCache  = WebImageCache(webInterface: webInterface)
         let dataRepository = DataRepository(dataContext: self.persistentContainer.viewContext)
 
+        let frame = UIScreen.main.bounds
+        self.window = UIWindow(frame: frame)
         let articlesViewController = ArticleListViewController(webInterface: webInterface,
                                                                webImageCache: webImageCache,
                                                                dataRepository: dataRepository)
+        if UIDevice.current.userInterfaceIdiom == .phone
+        {
+            window!.rootViewController = UINavigationController(rootViewController: articlesViewController)
+        }
 
-        let frame = UIScreen.main.bounds
-        window = UIWindow(frame: frame)
-        window!.rootViewController = UINavigationController(rootViewController: articlesViewController)
-        window!.makeKeyAndVisible()
+        if UIDevice.current.userInterfaceIdiom == .pad
+        {
+            let splitViewController = UISplitViewController()
+
+            let masterController = UINavigationController(rootViewController: articlesViewController)
+            let detailController = UINavigationController(rootViewController: UIViewController())
+            splitViewController.viewControllers = [masterController, detailController]
+
+            window!.rootViewController = splitViewController
+        }
+
+        self.window!.makeKeyAndVisible()
 
         return true
     }

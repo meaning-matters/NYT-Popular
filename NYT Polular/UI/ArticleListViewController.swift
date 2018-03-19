@@ -173,14 +173,23 @@ class ArticleListViewController: UIViewController, UITableViewDelegate, UITableV
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
-        let index = self.viewModel.articleIndex(for: indexPath)
+        let index                 = self.viewModel.articleIndex(for: indexPath)
         let articleViewModel      = ArticleViewModel(self.viewModel.articles[index],
                                                      listViewModel: self.viewModel,
                                                      imageCache: self.webImageCache,
                                                      dataRepository: self.dataRepository)
         let articleViewController = ArticleViewController(viewModel: articleViewModel)
 
-        self.navigationController?.pushViewController(articleViewController, animated: true)
+        if UIDevice.current.userInterfaceIdiom == .phone
+        {
+            self.navigationController?.pushViewController(articleViewController, animated: true)
+        }
+
+        if UIDevice.current.userInterfaceIdiom == .pad
+        {
+            let navigationController = UINavigationController(rootViewController: articleViewController)
+            self.splitViewController?.showDetailViewController(navigationController, sender: nil)
+        }
     }
 
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath)
