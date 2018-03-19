@@ -75,6 +75,7 @@ import CoreData
         if self.favorites.count > 0 && indexPath.section == 0
         {
             let article = self.articles.filter { $0.url == self.favorites[indexPath.row].article.url }.first!
+
             return self.articles.index(of: article)!
         }
         else
