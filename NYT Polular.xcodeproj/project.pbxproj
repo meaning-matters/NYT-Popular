@@ -96,7 +96,7 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		481E343C205ECB0D005CC92F /* Data */ = {
+		481E343C205ECB0D005CC92F /* Core Data */ = {
 			isa = PBXGroup;
 			children = (
 				484870F6205D159C00645DB5 /* NYT_Polular.xcdatamodeld */,
@@ -106,7 +106,7 @@
 				481E3436205ECAEC005CC92F /* Favorite+CoreDataClass.swift */,
 				485D6C01205F38A1007FE525 /* Favorite+CoreDataProperties.swift */,
 			);
-			path = Data;
+			path = "Core Data";
 			sourceTree = "<group>";
 		};
 		484870E3205D159C00645DB5 = {
@@ -133,8 +133,8 @@
 				484870FE205D159C00645DB5 /* Info.plist */,
 				484870EF205D159C00645DB5 /* AppDelegate.swift */,
 				484870F9205D159C00645DB5 /* Assets.xcassets */,
-				481E343C205ECB0D005CC92F /* Data */,
 				4848711A205D5C7D00645DB5 /* Common */,
+				481E343C205ECB0D005CC92F /* Core Data */,
 				4848711B205D5C9A00645DB5 /* Web */,
 				48487120205D6FB100645DB5 /* UI */,
 			);
