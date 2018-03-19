@@ -3,7 +3,7 @@
 //  NYT Popular
 //
 //  Created by Cornelis van der Bent on 18/03/2018.
-//  Copyright © 2018 meaning-matters. All rights reserved.
+//  Copyright © 2018 Cornelis. All rights reserved.
 //
 
 import Foundation

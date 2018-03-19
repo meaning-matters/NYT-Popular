@@ -92,11 +92,6 @@ class DataRepository: DataRepositoryProtocol
 
     func delete(article: Article)
     {
-        if let favorite = article.favorite
-        {
-            self.dataContext.delete(favorite)
-        }
-        
         self.dataContext.delete(article)
     }
 
