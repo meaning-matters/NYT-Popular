@@ -62,11 +62,7 @@ import CoreData
                 }
             }
 
-            self.dataRepository.save()
-
-            self.articles       = self.dataRepository.fetchArticles().map { ArticleModel(article: $0) }
-            self.cellViewModels = self.articles.map { ArticleListCellViewModel(article: $0, imageCache: self.imageCache) }
-            self.favorites      = self.dataRepository.fetchFavorites().map { FavoriteModel(favorite: $0) }
+            self.saveAndUpdate()
         }
     }
 
@@ -95,10 +91,17 @@ import CoreData
         if let article = self.dataRepository.findArticleWithUrl(url: self.articles[index].url)
         {
             self.dataRepository.delete(article: article)
-            self.dataRepository.save()
-            
-            self.articles       = self.dataRepository.fetchArticles().map { ArticleModel(article: $0) }
-            self.cellViewModels = self.articles.map { ArticleListCellViewModel(article: $0, imageCache: self.imageCache) }
+           self.saveAndUpdate()
         }
+    }
+
+    private func saveAndUpdate()
+    {
+
+        self.dataRepository.save()
+
+        self.articles       = self.dataRepository.fetchArticles().map { ArticleModel(article: $0) }
+        self.cellViewModels = self.articles.map { ArticleListCellViewModel(article: $0, imageCache: self.imageCache) }
+        self.favorites      = self.dataRepository.fetchFavorites().map { FavoriteModel(favorite: $0) }
     }
 }
