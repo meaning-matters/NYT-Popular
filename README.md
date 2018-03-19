@@ -6,7 +6,7 @@ When a table cell is tapped a detail view is shown with more information and the
 
 ## Remarks
 
-- Type of a app is slightly different than requested.  I wanted to save time by reusing demo code I wrote only a few weeks.  A lot was added: saving data in Core Data, parsing JSON using Swift 4 Codable, use Swift 4 KVO, implement favorites, add delete functionality, made universal by adding iPad split view support, ...
+- Type of a app is slightly different than requested.  I wanted to save time by reusing demo code I wrote only a few weeks ago.  A lot was added: saving data in Core Data, parsing JSON using Swift 4 Codable, use Swift 4 KVO, implement favorites, add delete functionality, made universal by adding iPad split view support, ...
 - Please be aware that it's a lot of code done in a short time.  A number of things could be refactored a bit.
 - Basic error handling is in place: An error is shown at center screen if the list could not be loaded.
 - No external libraries are used.  So no special instructions are needed to run the app.
