@@ -1,5 +1,5 @@
 //
-//  WebImageCache.swift
+//  ImageCache.swift
 //  NYT Polular
 //
 //  Created by Cornelis van der Bent on 17/03/2018.
@@ -9,15 +9,23 @@
 import Foundation
 import UIKit
 
-protocol WebImageCacheProtocol
+/// Protocol for downloading and caching images.
+protocol ImageCacheProtocol
 {
+    /// Loads and caches the image at the URL. If the image is already present (i.e. loaded), it's returned immediately
+    /// from the cache.
+    ///
+    /// - Parameters:
+    ///   - urlString:  URL string of the image.
+    ///   - completion: Called on the main thread once the image is available, or `nil` if something went wrong.
     func getImage(at urlString: String, completion: @escaping (UIImage?) -> ())
 
+    /// Flushes the cache and cancels any pending loads.
     func flush()
 }
 
 /// Local cache of images downloaded from the web.
-class WebImageCache: WebImageCacheProtocol
+class ImageCache: ImageCacheProtocol
 {
     private var webInterface: WebInterfaceProtocol
 
@@ -38,9 +46,9 @@ class WebImageCache: WebImageCacheProtocol
     ///
     /// This function must be called on the main thread. Calls on other threads are silently ignored.
     ///
-    /// TODO: This demo implementation saves all images. For a real app that would store a lot of images, storage size
-    ///       could matter and may require a mechanism to free up memory (e.g. by deleting the least recently used
-    ///       images).
+    /// TODO: This quick demo implementation saves all images, and in memory. An app that would store a lot of images,
+    ///       storage size could matter and may require a mechanism to free up memory (e.g. by deleting the least
+    ///       recently used images, and/or by storing images on disk.
     ///
     /// - Parameters:
     ///   - urlString:  The URL string from which to download the image.
@@ -86,7 +94,7 @@ class WebImageCache: WebImageCacheProtocol
     /// Flushes all images from the cache. Pending downloads are cancelled and the completion handlers are no longer
     /// called.
     ///
-    /// This function must be called on the main thread. Calls on other threads are silently ignored.Common
+    /// This function must be called on the main thread. Calls on other threads are silently ignored.
     func flush()
     {
         guard Thread.isMainThread else { return }

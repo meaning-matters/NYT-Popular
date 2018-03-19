@@ -9,18 +9,25 @@
 import Foundation
 import UIKit
 
+/// Model class for list cell.
 @objcMembers class ArticleListCellViewModel: NSObject
 {
-    let imageCache:    WebImageCacheProtocol
+    // MARK: - DI Object
+    let imageCache:    ImageCacheProtocol
+
+    // MARK: - Public Properties
     let section:       String
     let date:          String
     let title:         String
     let byline:        String
     let thumbnailUrl:  String?
 
+    // MARK: - Bindable Public Property
     dynamic var thumbnail: UIImage?
 
-    init(article: ArticleModel, imageCache: WebImageCacheProtocol)
+    // MARK: - Lifecycle
+
+    init(article: ArticleModel, imageCache: ImageCacheProtocol)
     {
         self.imageCache   = imageCache
 

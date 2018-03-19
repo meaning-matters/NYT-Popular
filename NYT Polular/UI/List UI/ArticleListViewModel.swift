@@ -9,14 +9,18 @@
 import Foundation
 import CoreData
 
+/// Model class for the list of articles.
 @objcMembers class ArticleListViewModel: NSObject
 {
+    // MARK: - DI Objects
     var articlesSource: ArticlesSourceProtocol
-    var imageCache:     WebImageCacheProtocol
+    var imageCache:     ImageCacheProtocol
     var dataRepository: DataRepositoryProtocol
 
+    // MARK: - Public Property
     var title: String = "New York Times Most Viewed"
 
+    // MARK: - Bindable Public Properties
     dynamic var articles:    [ArticleModel]  = []
     dynamic var favorites:   [FavoriteModel] = []
     dynamic var errorString: String?         = nil
@@ -24,7 +28,9 @@ import CoreData
 
     private var cellViewModels = [ArticleListCellViewModel]()
 
-    init(articlesSource: ArticlesSourceProtocol, imageCache: WebImageCacheProtocol, dataRepository: DataRepositoryProtocol)
+    // MARK: - Lifecycle
+
+    init(articlesSource: ArticlesSourceProtocol, imageCache: ImageCacheProtocol, dataRepository: DataRepositoryProtocol)
     {
         self.articlesSource = articlesSource
         self.imageCache     = imageCache
@@ -34,6 +40,8 @@ import CoreData
 
         self.loadArticles()
     }
+
+    // MARK: - Public Functions
 
     func loadArticles()
     {
@@ -91,13 +99,19 @@ import CoreData
         if let article = self.dataRepository.findArticleWithUrl(url: self.articles[index].url)
         {
             self.dataRepository.delete(article: article)
-           self.saveAndUpdate()
+            self.saveAndUpdate()
         }
     }
 
+    func favoriteWasAdded()
+    {
+        self.saveAndUpdate()
+    }
+
+    // MARK: - Local
+
     private func saveAndUpdate()
     {
-
         self.dataRepository.save()
 
         self.articles       = self.dataRepository.fetchArticles().map { ArticleModel(article: $0) }

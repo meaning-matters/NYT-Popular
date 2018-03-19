@@ -1,24 +1,15 @@
 //
-//  WebArticlesSource.swift
+//  ArticlesCodable.swift
 //  NYT Polular
 //
-//  Created by Cornelis van der Bent on 17/03/2018.
+//  Created by Cornelis van der Bent on 19/03/2018.
 //  Copyright © 2018 Cornelis. All rights reserved.
 //
 
 import Foundation
 
-/// Supplies a list articles.
-protocol ArticlesSourceProtocol
-{
-    /// Fetches the list of articles usually on a background thread.
-    ///
-    /// - Parameter completion: Called on main thread when the fetch has finished.  Supplies an array of Article
-    ///                         objects. On error, `nil` is supplied, together with an error string.
-    func loadArticles(completion: @escaping (_ articles: [ArticleModel]?, _ errorString: String?) -> ())
-}
-
-/// Retrieves articles from the NYT web API.  The returned JSON has the following format (with example data):
+/// Nested `Codable` structure for parsing JSON coming from the NYT web API.  This JSON has the following format
+/// (with example data):
 ///
 ///     {
 ///         "status"      : "OK",
@@ -83,118 +74,50 @@ protocol ArticlesSourceProtocol
 ///         ]
 ///     }
 ///
-class WebArticlesSource: ArticlesSourceProtocol
+struct ArticlesCodable: Codable
 {
-    struct MostViewed: Codable
+    struct Result: Codable
     {
-        struct Result: Codable
+        var url:            String
+        var section:        String
+        var byline:         String
+        var title:          String
+        var abstract:       String
+        var published_date: String
+        var source:         String
+
+        struct Media: Codable
         {
-            var url:            String
-            var section:        String
-            var byline:         String
-            var title:          String
-            var abstract:       String
-            var published_date: String
-            var source:         String
-
-            struct Media: Codable
+            struct Metadata: Codable
             {
-                struct Metadata: Codable
-                {
-                    var url:    String
-                    var format: String
-                }
-
-                var type:     String
-                var metadata: [Metadata]
-
-                private enum CodingKeys: String, CodingKey
-                {
-                    case type     = "type"
-                    case metadata = "media-metadata"
-                }
+                var url:    String
+                var format: String
             }
 
-            var media: [Media]
+            private enum CodingKeys: String, CodingKey
+            {
+                case type     = "type"
+                case metadata = "media-metadata"
+            }
+
+            var type:     String
+            var metadata: [Metadata]
         }
 
-        var status:  String
-        var results: [Result]
+        var media: [Media]
     }
 
-    private let urlString = "https://api.nytimes.com/svc/mostpopular/v2/mostviewed/all-sections/7.json?apikey=6f1888ceb12041799e62181b35463f6b"
+    var status:  String
+    var results: [Result]
 
-    private var webInterface: WebInterfaceProtocol
-
-    init(webInterface: WebInterfaceProtocol)
-    {
-        self.webInterface = webInterface
-    }
-
-    func loadArticles(completion: @escaping (_ articles: [ArticleModel]?, _ errorString: String?) -> ())
-    {
-        webInterface.getRequest(toUrlString: urlString)
-        { (data, errorString) in
-            guard errorString == nil else
-            {
-                completion(nil, errorString);
-
-                return
-            }
-
-            guard let data = data else
-            {
-                completion(nil, "No data received")
-
-                return
-            }
-
-            guard let patchedData = self.patchData(data) else
-            {
-                completion(nil, "Invalid data received")
-
-                return
-            }
-
-            do
-            {
-                let mostViewed = try JSONDecoder().decode(MostViewed.self, from: patchedData)
-
-                if mostViewed.status == "OK"
-                {
-                    let articles = mostViewed.results.map
-                    {
-                        return ArticleModel(url:          $0.url,
-                                            section:      $0.section,
-                                            byline:       $0.byline,
-                                            title:        $0.title,
-                                            abstract:     $0.abstract,
-                                            date:         $0.published_date,
-                                            source:       $0.source,
-                                            thumbnailUrl: self.getThumbnailUrl(from: $0),
-                                            imageUrl:     self.getImageUrl(from: $0))
-                    }
-
-                    completion(articles, nil)
-                }
-                else
-                {
-                    completion(nil, "Error getting data from NYT")
-                }
-            }
-            catch
-            {
-                completion(nil, "Unexpected data received")
-            }
-        }
-    }
+    // MARK: - Static Utility Functions
 
     /// Patches JSON to work around format design issue.
     ///
     /// There's a design issue with NYT's JSON format: When there are no images, the "media" is not an empty array as
     /// you'd expect, but an empty string instead.  This means that the data type of "media"'s value changes.  To
     /// allow the use of Swift 4's Decodable classes for easy JSON parsing, this issue is patched here.
-    private func patchData(_ data: Data) -> Data?
+    static func patchData(_ data: Data) -> Data?
     {
         var string = String(data: data, encoding: .utf8)
 
@@ -208,7 +131,7 @@ class WebArticlesSource: ArticlesSourceProtocol
     ///
     /// - Parameter result: Data as received from NYT.
     /// - Returns:          URL to online image, or `nil`.
-    private func getThumbnailUrl(from result: MostViewed.Result) -> String?
+    static func getThumbnailUrl(from result: ArticlesCodable.Result) -> String?
     {
         return self.getImageUrlWithFormat("Large Thumbnail", from: result)
     }
@@ -217,10 +140,12 @@ class WebArticlesSource: ArticlesSourceProtocol
     ///
     /// - Parameter result: Data as received from NYT.
     /// - Returns:          URL to online image, or `nil`.
-    private func getImageUrl(from result: MostViewed.Result) -> String?
+    static func getImageUrl(from result: ArticlesCodable.Result) -> String?
     {
         return self.getImageUrlWithFormat("square640", from: result)
     }
+
+    // MARK: - Local
 
     /// Descends in NYT's nested data to find the image URL marked with the supplied `format`.
     ///
@@ -228,10 +153,10 @@ class WebArticlesSource: ArticlesSourceProtocol
     ///   - format: The NYT data's format specifier of the wanted image.
     ///   - result: Data as received from NYT.
     /// - Returns:  URL to online image that conform to supplied `format`, or `nil`.
-    private func getImageUrlWithFormat(_ format: String, from result: MostViewed.Result) -> String?
+    private static func getImageUrlWithFormat(_ format: String, from result: ArticlesCodable.Result) -> String?
     {
         if let images   = (result.media.filter { $0.type == "image" }).first,
-           let metadata = (images.metadata.filter { $0.format == format }).first
+            let metadata = (images.metadata.filter { $0.format == format }).first
         {
             return metadata.url
         }

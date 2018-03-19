@@ -9,6 +9,7 @@
 import Foundation
 import CoreData
 
+/// Model class article data.
 @objcMembers class ArticleModel: NSObject
 {
     var url:          String

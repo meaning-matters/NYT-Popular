@@ -8,10 +8,10 @@
 
 import UIKit
 
+/// Shows all details of an article, including a large image.
 class ArticleViewController : UIViewController
 {
-    private var viewModel: ArticleViewModel
-
+    // MARK: - User Interface
     @IBOutlet private weak var titleLabel:          UILabel!
     @IBOutlet private weak var bylineLabel:         UILabel!
     @IBOutlet private weak var imageView:           UIImageView!
@@ -19,8 +19,13 @@ class ArticleViewController : UIViewController
     @IBOutlet private weak var abstractLabel:       UILabel!
     @IBOutlet private weak var goButton:            UIButton!
 
+    // MARK: - View Model Bindings
     private var imageObserver:      NSKeyValueObservation?
     private var isFavoriteObserver: NSKeyValueObservation?
+
+    private var viewModel: ArticleViewModel
+
+    // MARK: - Lifecycle & View Controller
 
     init(viewModel: ArticleViewModel)
     {
@@ -58,6 +63,8 @@ class ArticleViewController : UIViewController
         self.bindViewModel()
     }
 
+    // MARK: - UI Actions
+
     @objc func barButtonAction()
     {
         self.viewModel.isFavorite = !self.viewModel.isFavorite
@@ -70,6 +77,8 @@ class ArticleViewController : UIViewController
             UIApplication.shared.open(url)
         }
     }
+
+    // MARK: - Local
 
     private func bindViewModel()
     {

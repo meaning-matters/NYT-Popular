@@ -19,8 +19,8 @@
 		48487108205D159C00645DB5 /* NYT_PolularTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48487107205D159C00645DB5 /* NYT_PolularTests.swift */; };
 		48487115205D550B00645DB5 /* ArticleListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 48487114205D550B00645DB5 /* ArticleListViewController.xib */; };
 		48487117205D5BC400645DB5 /* WebInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48487116205D5BC400645DB5 /* WebInterface.swift */; };
-		4848711D205D5CC000645DB5 /* WebImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4848711C205D5CC000645DB5 /* WebImageCache.swift */; };
-		4848711F205D6FA900645DB5 /* WebArticlesSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4848711E205D6FA900645DB5 /* WebArticlesSource.swift */; };
+		4848711D205D5CC000645DB5 /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4848711C205D5CC000645DB5 /* ImageCache.swift */; };
+		4848711F205D6FA900645DB5 /* ArticlesSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4848711E205D6FA900645DB5 /* ArticlesSource.swift */; };
 		48487124205D704D00645DB5 /* ArticleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48487123205D704D00645DB5 /* ArticleModel.swift */; };
 		48487126205D711000645DB5 /* ArticleListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48487125205D711000645DB5 /* ArticleListCell.swift */; };
 		48487128205D714200645DB5 /* ArticleListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48487127205D714200645DB5 /* ArticleListViewModel.swift */; };
@@ -29,6 +29,7 @@
 		485D6C03205F38A1007FE525 /* Favorite+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 485D6C01205F38A1007FE525 /* Favorite+CoreDataProperties.swift */; };
 		485D6C04205F38A1007FE525 /* Article+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 485D6C02205F38A1007FE525 /* Article+CoreDataProperties.swift */; };
 		485D6C06205F3F08007FE525 /* FavoriteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 485D6C05205F3F08007FE525 /* FavoriteModel.swift */; };
+		486A18FF2060660C00115F7D /* ArticlesCodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486A18FE2060660C00115F7D /* ArticlesCodable.swift */; };
 		48B2D0E8205F12C00050A927 /* ArticleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48B2D0E6205F12C00050A927 /* ArticleViewController.swift */; };
 		48B2D0E9205F12C00050A927 /* ArticleViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 48B2D0E7205F12C00050A927 /* ArticleViewController.xib */; };
 		48B2D0EB205F134A0050A927 /* ArticleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48B2D0EA205F134A0050A927 /* ArticleViewModel.swift */; };
@@ -61,8 +62,8 @@
 		48487109205D159C00645DB5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		48487114205D550B00645DB5 /* ArticleListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ArticleListViewController.xib; sourceTree = "<group>"; };
 		48487116205D5BC400645DB5 /* WebInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebInterface.swift; sourceTree = "<group>"; };
-		4848711C205D5CC000645DB5 /* WebImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebImageCache.swift; sourceTree = "<group>"; };
-		4848711E205D6FA900645DB5 /* WebArticlesSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebArticlesSource.swift; sourceTree = "<group>"; };
+		4848711C205D5CC000645DB5 /* ImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
+		4848711E205D6FA900645DB5 /* ArticlesSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticlesSource.swift; sourceTree = "<group>"; };
 		48487123205D704D00645DB5 /* ArticleModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleModel.swift; sourceTree = "<group>"; };
 		48487125205D711000645DB5 /* ArticleListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleListCell.swift; sourceTree = "<group>"; };
 		48487127205D714200645DB5 /* ArticleListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleListViewModel.swift; sourceTree = "<group>"; };
@@ -71,6 +72,7 @@
 		485D6C01205F38A1007FE525 /* Favorite+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Favorite+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		485D6C02205F38A1007FE525 /* Article+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Article+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		485D6C05205F3F08007FE525 /* FavoriteModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteModel.swift; sourceTree = "<group>"; };
+		486A18FE2060660C00115F7D /* ArticlesCodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticlesCodable.swift; sourceTree = "<group>"; };
 		48B2D0E6205F12C00050A927 /* ArticleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleViewController.swift; sourceTree = "<group>"; };
 		48B2D0E7205F12C00050A927 /* ArticleViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ArticleViewController.xib; sourceTree = "<group>"; };
 		48B2D0EA205F134A0050A927 /* ArticleViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleViewModel.swift; sourceTree = "<group>"; };
@@ -159,9 +161,10 @@
 		4848711B205D5C9A00645DB5 /* Web */ = {
 			isa = PBXGroup;
 			children = (
-				4848711E205D6FA900645DB5 /* WebArticlesSource.swift */,
+				486A18FE2060660C00115F7D /* ArticlesCodable.swift */,
+				4848711E205D6FA900645DB5 /* ArticlesSource.swift */,
 				48487116205D5BC400645DB5 /* WebInterface.swift */,
-				4848711C205D5CC000645DB5 /* WebImageCache.swift */,
+				4848711C205D5CC000645DB5 /* ImageCache.swift */,
 			);
 			path = Web;
 			sourceTree = "<group>";
@@ -309,12 +312,12 @@
 				48487117205D5BC400645DB5 /* WebInterface.swift in Sources */,
 				485D6C03205F38A1007FE525 /* Favorite+CoreDataProperties.swift in Sources */,
 				485D6C04205F38A1007FE525 /* Article+CoreDataProperties.swift in Sources */,
-				4848711F205D6FA900645DB5 /* WebArticlesSource.swift in Sources */,
+				4848711F205D6FA900645DB5 /* ArticlesSource.swift in Sources */,
 				48487124205D704D00645DB5 /* ArticleModel.swift in Sources */,
 				481E343A205ECAEC005CC92F /* Favorite+CoreDataClass.swift in Sources */,
 				484870F2205D159C00645DB5 /* ArticleListViewController.swift in Sources */,
 				48487126205D711000645DB5 /* ArticleListCell.swift in Sources */,
-				4848711D205D5CC000645DB5 /* WebImageCache.swift in Sources */,
+				4848711D205D5CC000645DB5 /* ImageCache.swift in Sources */,
 				481E3438205ECAEC005CC92F /* Article+CoreDataClass.swift in Sources */,
 				481E343F205EDF1E005CC92F /* DataRepository.swift in Sources */,
 				484870F8205D159C00645DB5 /* NYT_Polular.xcdatamodeld in Sources */,
@@ -322,6 +325,7 @@
 				484870F0205D159C00645DB5 /* AppDelegate.swift in Sources */,
 				481E342B205DB5C7005CC92F /* String+Utility.swift in Sources */,
 				48B2D0EB205F134A0050A927 /* ArticleViewModel.swift in Sources */,
+				486A18FF2060660C00115F7D /* ArticlesCodable.swift in Sources */,
 				4848712A205D716E00645DB5 /* ArticleListCellViewModel.swift in Sources */,
 				485D6C06205F3F08007FE525 /* FavoriteModel.swift in Sources */,
 				48487128205D714200645DB5 /* ArticleListViewModel.swift in Sources */,

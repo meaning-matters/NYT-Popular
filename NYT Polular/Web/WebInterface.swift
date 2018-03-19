@@ -8,20 +8,24 @@
 
 import Foundation
 
+/// Protocol for GETing data from an URL.
 protocol WebInterfaceProtocol
 {
-    @discardableResult  func getRequest(toUrlString urlString: String,
-                                        completion: @escaping(Data?, String?) -> Void) -> URLSessionDataTask
+    /// Loads data from the specified URL string.
+    ///
+    /// Loading is done on a background thread.
+    ///
+    /// - Parameters:
+    ///   - urlString:  The URL string to load.
+    ///   - completion: Called on the main thread when loading has finished or failed. Passes data or an error string.
+    /// - Returns:      The session task that performs the load.
+    @discardableResult func getRequest(toUrlString urlString: String,
+                                       completion: @escaping(Data?, String?) -> Void) -> URLSessionDataTask
 }
 
 /// Class to perform web requests.
 class WebInterface: WebInterfaceProtocol
 {
-    /// Performs a GET request on background thread.
-    ///
-    /// - Parameters:
-    ///   - urlString:  The URL that needs to be loaded in string format.
-    ///   - completion: Called on the main thread to supply the result object, or an error string.
     @discardableResult func getRequest(toUrlString urlString: String,
                                        completion: @escaping(Data?, String?) -> Void) -> URLSessionDataTask
     {

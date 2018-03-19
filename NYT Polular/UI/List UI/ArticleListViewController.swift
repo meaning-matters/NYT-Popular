@@ -10,26 +10,32 @@ import Foundation
 import UIKit
 import CoreData
 
+/// Shows a list of articles.
 class ArticleListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource
 {
-    @IBOutlet private var tableView: UITableView!
+    // MARK: - User Interface
+    @IBOutlet private var tableView:      UITableView!
+    private var           statusLabel:    UILabel!
+    private let           loadingText:    String = "Loading..."
+    private let           cellIdentifier: String = "ArticleListCell"
 
+    // MARK: - DI Objects
     private var webInterface:   WebInterfaceProtocol
-    private var webImageCache:  WebImageCacheProtocol
+    private var imageCache:     ImageCacheProtocol
     private var dataRepository: DataRepositoryProtocol
 
-    private var statusLabel:    UILabel!
-    private let loadingText:    String = "Loading..."
-
+    // MARK: - View Model Bindings
     private var errorObserver:     NSKeyValueObservation?
     private var isLoadingObserver: NSKeyValueObservation?
     private var articlesObserver:  NSKeyValueObservation?
     private var favoritesObserver: NSKeyValueObservation?
 
-    init(webInterface: WebInterfaceProtocol, webImageCache: WebImageCacheProtocol, dataRepository: DataRepositoryProtocol)
+    // MARK: - Lifecycle & View Controller
+
+    init(webInterface: WebInterfaceProtocol, imageCache: ImageCacheProtocol, dataRepository: DataRepositoryProtocol)
     {
         self.webInterface   = webInterface
-        self.webImageCache  = webImageCache
+        self.imageCache     = imageCache
         self.dataRepository = dataRepository
 
         super.init(nibName: "ArticleListViewController", bundle: nil)
@@ -44,7 +50,7 @@ class ArticleListViewController: UIViewController, UITableViewDelegate, UITableV
     {
         super.viewDidLoad()
 
-        self.tableView.register(UINib(nibName: "ArticleListCell", bundle: nil), forCellReuseIdentifier: "ArticleListCell")
+        self.tableView.register(UINib(nibName: "ArticleListCell", bundle: nil), forCellReuseIdentifier: self.cellIdentifier)
 
         self.addTableBackground()
         self.tableView.tableFooterView = UIView()
@@ -57,7 +63,10 @@ class ArticleListViewController: UIViewController, UITableViewDelegate, UITableV
                                                  action: #selector(ArticleListViewController.handleRefresh(_:)),
                                                  for: UIControlEvents.valueChanged)
 
-        navigationItem.backBarButtonItem = UIBarButtonItem(title: "List", style: .plain, target: nil, action: nil)
+        if UIDevice.current.userInterfaceIdiom == .phone
+        {
+            navigationItem.backBarButtonItem = UIBarButtonItem(title: "List", style: .plain, target: nil, action: nil)
+        }
     }
 
     override func viewWillAppear(_ animated: Bool)
@@ -72,10 +81,12 @@ class ArticleListViewController: UIViewController, UITableViewDelegate, UITableV
 
     private lazy var viewModel: ArticleListViewModel =
     {
-        return ArticleListViewModel(articlesSource: WebArticlesSource(webInterface: self.webInterface),
-                                    imageCache: self.webImageCache,
+        return ArticleListViewModel(articlesSource: ArticlesSource(webInterface: self.webInterface),
+                                    imageCache: self.imageCache,
                                     dataRepository: self.dataRepository)
     }()
+
+    // MARK: - Local
 
     @objc private func handleRefresh(_ refreshControl: UIRefreshControl)
     {
@@ -164,7 +175,7 @@ class ArticleListViewController: UIViewController, UITableViewDelegate, UITableV
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
-        let cell = self.tableView.dequeueReusableCell(withIdentifier: "ArticleListCell", for: indexPath) as! ArticleListCell
+        let cell = self.tableView.dequeueReusableCell(withIdentifier: self.cellIdentifier, for: indexPath) as! ArticleListCell
 
         cell.viewModel = self.viewModel.cellViewModel(at: indexPath)
 
@@ -176,7 +187,7 @@ class ArticleListViewController: UIViewController, UITableViewDelegate, UITableV
         let index                 = self.viewModel.articleIndex(for: indexPath)
         let articleViewModel      = ArticleViewModel(self.viewModel.articles[index],
                                                      listViewModel: self.viewModel,
-                                                     imageCache: self.webImageCache,
+                                                     imageCache: self.imageCache,
                                                      dataRepository: self.dataRepository)
         let articleViewController = ArticleViewController(viewModel: articleViewModel)
 

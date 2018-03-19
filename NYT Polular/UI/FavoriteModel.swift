@@ -9,17 +9,11 @@
 import Foundation
 import CoreData
 
+/// Model class for favorite info.
 @objcMembers class FavoriteModel: NSObject
 {
-    var date:    NSDate
+    var date:    NSDate         // Favorite creation date.
     var article: ArticleModel
-
-    init(date:    NSDate,
-         article: ArticleModel)
-    {
-        self.date    = date
-        self.article = article
-    }
 
     init(favorite: Favorite)
     {

@@ -8,6 +8,7 @@
 
 import UIKit
 
+/// Cell showing article summary info.
 class ArticleListCell: UITableViewCell
 {
     @IBOutlet private weak var sectionLabel:  UILabel!
@@ -31,6 +32,8 @@ class ArticleListCell: UITableViewCell
             self.bindViewModel()
         }
     }
+
+    // MARK: - Local
 
     private func bindViewModel()
     {

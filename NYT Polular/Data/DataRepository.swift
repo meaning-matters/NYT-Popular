@@ -9,8 +9,24 @@
 import Foundation
 import CoreData
 
+/// Protocol for storing and retrieving `Article` and `Favorite` objects.
 protocol DataRepositoryProtocol
 {
+    /// Stores an `Article` object if it's not present yet.
+    ///
+    /// The `url` is used as the unique value to compare articles.
+    ///
+    /// - Parameters:
+    ///   - url:          The online full article URL string.
+    ///   - section:      News section.
+    ///   - byline:       Article authors.
+    ///   - title:        Main title.
+    ///   - abstract:     Abstract.
+    ///   - date:         Textual article release date.
+    ///   - source:       News source.
+    ///   - thumbnailUrl: URL string of thumbnail image.
+    ///   - imageUrl:     URL string of large image.
+    /// - Returns:        The newly created `Article` object, or `nil` if already present.
     @discardableResult func addUniqueArticle(url:          String,
                                              section:      String,
                                              byline:       String,
@@ -21,18 +37,44 @@ protocol DataRepositoryProtocol
                                              thumbnailUrl: String?,
                                              imageUrl:     String?) -> Article?
 
+
+    /// Finds the article that has the given `url`.
+    ///
+    /// - Parameter url: URL string to search with.
+    /// - Returns:       The found `Article` object, or `nil`.
     func findArticleWithUrl(url: String) -> Article?
 
+
+    /// Deletes the specified article.
+    ///
+    /// - Parameter article: `Article` object to delete.
     func delete(article: Article)
 
+
+    /// Retrieves all `Article` objects sorted on `date` and then on `title`.
+    ///
+    /// - Returns: Array of sorted `Article` objects.
     func fetchArticles() -> [Article]
 
+    /// Retrieves all `Favorite` objects sorted on `date` and then on the associated `Article`'s `title`.
+    ///
+    /// - Returns: Array of sorted `Favorite` objects.
     func fetchFavorites() -> [Favorite]
 
-    func addFavorite(article: Article)
 
+    /// Stores a `Favorite` object.
+    ///
+    /// - Parameter article: The associated article.
+    /// - Returns:           The newly create `Favorite` object.
+    func addFavorite(article: Article) -> Favorite
+
+
+    /// Deletes the `Favorite` object that is associated with the specified `Article`.
+    ///
+    /// - Parameter article: Associated `Article`.
     func removeFavorite(article: Article)
 
+    /// Saves data changes to disk, if any.
     func save()
 }
 
@@ -45,6 +87,8 @@ class DataRepository: DataRepositoryProtocol
         self.dataContext = dataContext
     }
 
+    // MARK: - DataRepositoryProtocol
+    
     @discardableResult func addUniqueArticle(url:          String,
                                              section:      String,
                                              byline:       String,
@@ -99,7 +143,11 @@ class DataRepository: DataRepositoryProtocol
     {
         do
         {
-            return try self.dataContext.fetch(Article.fetchRequest())
+            let fetchRequest: NSFetchRequest = Article.fetchRequest()
+            fetchRequest.sortDescriptors = [NSSortDescriptor(key: "date", ascending: false),
+                                            NSSortDescriptor(key: "title", ascending: true)]
+
+            return try self.dataContext.fetch(fetchRequest)
         }
         catch let error as NSError
         {
@@ -113,7 +161,11 @@ class DataRepository: DataRepositoryProtocol
     {
         do
         {
-            return try self.dataContext.fetch(Favorite.fetchRequest())
+            let fetchRequest: NSFetchRequest = Favorite.fetchRequest()
+            fetchRequest.sortDescriptors = [NSSortDescriptor(key: "date", ascending: false),
+                                            NSSortDescriptor(key: "article.title", ascending: true)]
+
+            return try self.dataContext.fetch(fetchRequest)
         }
         catch let error as NSError
         {
@@ -123,11 +175,13 @@ class DataRepository: DataRepositoryProtocol
         }
     }
 
-    func addFavorite(article: Article)
+    func addFavorite(article: Article) -> Favorite
     {
         let favorite = Favorite(entity: Favorite.entity(), insertInto: self.dataContext)
         favorite.article = article
         favorite.date    = NSDate()
+
+        return favorite
     }
 
     func removeFavorite(article: Article)
@@ -140,13 +194,16 @@ class DataRepository: DataRepositoryProtocol
 
     func save()
     {
-        do
+        if self.dataContext.hasChanges
         {
-            try self.dataContext.save()
-        }
-        catch let error as NSError
-        {
-            print("Save failed: \(error), \(error.userInfo)")
+            do
+            {
+                try self.dataContext.save()
+            }
+            catch let error as NSError
+            {
+                print("Save failed: \(error), \(error.userInfo)")
+            }
         }
     }
 }

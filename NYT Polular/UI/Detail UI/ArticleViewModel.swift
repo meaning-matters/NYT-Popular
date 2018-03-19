@@ -9,27 +9,33 @@
 import Foundation
 import UIKit
 
+/// Model class belonging to the view that shows an article in detail.
 @objcMembers class ArticleViewModel: NSObject
 {
+    // MARK: - View Models
     private var model:          ArticleModel
     private var listViewModel:  ArticleListViewModel
-    private var imageCache:     WebImageCacheProtocol
+
+    // MARK: - DI Objects
+    private var imageCache:     ImageCacheProtocol
     private var dataRepository: DataRepositoryProtocol
 
-    var url:         String  { return self.model.url }
-    var section:     String  { return self.model.section }
-    var byline:      String  { return self.model.byline }
-    var title:       String  { return self.model.title }
-    var abstract:    String  { return self.model.abstract }
-    var date:        String  { return self.model.date }
-    var source:      String  { return self.model.date }
-    var imageUrl:    String? { return self.model.imageUrl }
-
+    // MARK: - Public Properties
+    var url:          String  { return self.model.url }
+    var section:      String  { return self.model.section }
+    var byline:       String  { return self.model.byline }
+    var title:        String  { return self.model.title }
+    var abstract:     String  { return self.model.abstract }
+    var date:         String  { return self.model.date }
+    var source:       String  { return self.model.date }
+    var imageUrl:     String? { return self.model.imageUrl }
+    let buttonTitle:  String = "Go to Full Online Article"
     lazy var article: Article =
     {
         return self.dataRepository.findArticleWithUrl(url: self.model.url)!
     }()
 
+    // MARK: - Bindable Public Properties
     dynamic var image:      UIImage
     dynamic var isFavorite: Bool
     {
@@ -38,9 +44,10 @@ import UIKit
             self.model.isFavorite = isFavorite
             if isFavorite
             {
-                self.dataRepository.addFavorite(article: self.article)
-                self.listViewModel.favorites.append(FavoriteModel(date: NSDate(),
-                                                                  article: ArticleModel(article: self.article)))
+                let favorite = self.dataRepository.addFavorite(article: self.article)
+                self.listViewModel.favorites.append(FavoriteModel(favorite: favorite))
+
+                self.listViewModel.favoriteWasAdded()
             }
             else
             {
@@ -50,11 +57,11 @@ import UIKit
         }
     }
 
-    let buttonTitle: String = "Go to Full Online Article"
+    // MARK: - Lifecycle
 
     init(_ model: ArticleModel,
          listViewModel: ArticleListViewModel,
-         imageCache: WebImageCacheProtocol,
+         imageCache: ImageCacheProtocol,
          dataRepository: DataRepositoryProtocol)
     {
         self.model          = model
