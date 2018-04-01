@@ -8,12 +8,11 @@ Articles can be deleted. At the moment this is only temporary, a reload (by drag
 
 Articles and favorites are sorted first on date and then on main article title.
 
-Here's a list of remarks that are there due to time constraints.  Well preparing this work for KLM already cost over 2 full days.  One simple has to stop somewhere.  In case you're missing certain aspects of app development you'd still like to see me do, please ask and I'll extend the app.
+Here's a list of remarks that are there due to time constraints.  One simply has to stop somewhere.  In case you're missing certain aspects of app development you'd still like to see me do, please ask and I'll extend the app.
 
 ## Remarks
 
-- Type of a app is slightly different than requested.  It does display my experience with many or all relevant techniques for this demo.  I wanted to save time by reusing demo code I wrote only a few weeks ago.  A lot was added: saving data in Core Data, parsing JSON using Swift 4 Codable, use of Swift 4 KVO, implementing favorites, adding delete functionality, adding iPad support (using split view), ...
-- Images are not saved on disk.  Now that there's a Core Data database, the image cache could be re-implemented using Core Data.
+- App displays my experience with relevant techniques: saving data in Core Data, parsing JSON using Swift 4 Codable, use of Swift 4 KVO, both iPhone and iPad support (using split view), ...
 - Please be aware that it's a lot of code done in a short time.  A number of things could be refactored a bit.
 - Basic error handling is in place: An error is shown at center screen if the list could not be loaded.
 - All kinds of extra's were at the back of my mind, but were not done simply for time reasons: Adding loading spinners on the images, ability to search articles in the list, ...
@@ -23,6 +22,7 @@ Here's a list of remarks that are there due to time constraints.  Well preparing
 
 ## Know Issues
 
+- Downloaded images are not saved on disk but kept in memory.  The image cache could be re-implemented using Core Data.
 - Adding favorite and deleting an article are not animated on the table yet.
 - All thumbnail images are loaded immediately, instead of when its cell is about to be shown.  Images should be loaded only when they (almost) appear on screen.  (The list is only 20 long and images small, so it's not a big deal for this demo.)
 - The image cache implementation saves all images but never frees up memory yet.  A real app that handles many (larger) images, should have a mechanism to limit memory use.
